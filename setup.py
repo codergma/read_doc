@@ -13,4 +13,5 @@ setup(
     packages=[],
     install_requires=['requests'],
     entry_points={},
+    package_dir={'glitter_sdk': 'glitter_sdk'},
 )
