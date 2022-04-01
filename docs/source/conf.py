@@ -20,7 +20,7 @@ sys.path.insert(0, project_root)
 sys.path.insert(0, os.path.dirname('../../glitter_sdk'))
 print(project_root)
 
-import glitter_driver
+import glitter_sdk
 
 # -- Project information -----------------------------------------------------
 

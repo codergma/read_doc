@@ -1,41 +1,41 @@
 # Table of Contents
 
-* [glitter\_driver.driver](#glitter_driver.driver)
-  * [GlitterClient](#glitter_driver.driver.GlitterClient)
-    * [\_\_init\_\_](#glitter_driver.driver.GlitterClient.__init__)
-    * [nodes](#glitter_driver.driver.GlitterClient.nodes)
-    * [transport](#glitter_driver.driver.GlitterClient.transport)
-    * [chain](#glitter_driver.driver.GlitterClient.chain)
-    * [admin](#glitter_driver.driver.GlitterClient.admin)
-    * [db](#glitter_driver.driver.GlitterClient.db)
-  * [NamespacedDriver](#glitter_driver.driver.NamespacedDriver)
-    * [\_\_init\_\_](#glitter_driver.driver.NamespacedDriver.__init__)
-  * [DataBase](#glitter_driver.driver.DataBase)
-    * [list\_schema](#glitter_driver.driver.DataBase.list_schema)
-    * [put\_doc](#glitter_driver.driver.DataBase.put_doc)
-    * [get\_docs](#glitter_driver.driver.DataBase.get_docs)
-    * [simple\_search](#glitter_driver.driver.DataBase.simple_search)
-    * [complex\_search](#glitter_driver.driver.DataBase.complex_search)
-  * [Chain](#glitter_driver.driver.Chain)
-    * [status](#glitter_driver.driver.Chain.status)
-    * [tx\_search](#glitter_driver.driver.Chain.tx_search)
-    * [block\_search](#glitter_driver.driver.Chain.block_search)
-    * [block](#glitter_driver.driver.Chain.block)
-    * [health](#glitter_driver.driver.Chain.health)
-    * [net\_info](#glitter_driver.driver.Chain.net_info)
-    * [blockchain](#glitter_driver.driver.Chain.blockchain)
-    * [header](#glitter_driver.driver.Chain.header)
-    * [header\_by\_hash](#glitter_driver.driver.Chain.header_by_hash)
-    * [block\_by\_hash](#glitter_driver.driver.Chain.block_by_hash)
-  * [Admin](#glitter_driver.driver.Admin)
-    * [update\_validator](#glitter_driver.driver.Admin.update_validator)
-    * [validators](#glitter_driver.driver.Admin.validators)
+* [glitter\_driver.driver](#glitter_sdk.driver)
+  * [GlitterClient](#glitter_sdk.driver.GlitterClient)
+    * [\_\_init\_\_](#glitter_sdk.driver.GlitterClient.__init__)
+    * [nodes](#glitter_sdk.driver.GlitterClient.nodes)
+    * [transport](#glitter_sdk.driver.GlitterClient.transport)
+    * [chain](#glitter_sdk.driver.GlitterClient.chain)
+    * [admin](#glitter_sdk.driver.GlitterClient.admin)
+    * [db](#glitter_sdk.driver.GlitterClient.db)
+  * [NamespacedDriver](#glitter_sdk.driver.NamespacedDriver)
+    * [\_\_init\_\_](#glitter_sdk.driver.NamespacedDriver.__init__)
+  * [DataBase](#glitter_sdk.driver.DataBase)
+    * [list\_schema](#glitter_sdk.driver.DataBase.list_schema)
+    * [put\_doc](#glitter_sdk.driver.DataBase.put_doc)
+    * [get\_docs](#glitter_sdk.driver.DataBase.get_docs)
+    * [simple\_search](#glitter_sdk.driver.DataBase.simple_search)
+    * [complex\_search](#glitter_sdk.driver.DataBase.complex_search)
+  * [Chain](#glitter_sdk.driver.Chain)
+    * [status](#glitter_sdk.driver.Chain.status)
+    * [tx\_search](#glitter_sdk.driver.Chain.tx_search)
+    * [block\_search](#glitter_sdk.driver.Chain.block_search)
+    * [block](#glitter_sdk.driver.Chain.block)
+    * [health](#glitter_sdk.driver.Chain.health)
+    * [net\_info](#glitter_sdk.driver.Chain.net_info)
+    * [blockchain](#glitter_sdk.driver.Chain.blockchain)
+    * [header](#glitter_sdk.driver.Chain.header)
+    * [header\_by\_hash](#glitter_sdk.driver.Chain.header_by_hash)
+    * [block\_by\_hash](#glitter_sdk.driver.Chain.block_by_hash)
+  * [Admin](#glitter_sdk.driver.Admin)
+    * [update\_validator](#glitter_sdk.driver.Admin.update_validator)
+    * [validators](#glitter_sdk.driver.Admin.validators)
 
-<a id="glitter_driver.driver"></a>
+<a id="glitter_sdk.driver"></a>
 
 # glitter\_driver.driver
 
-<a id="glitter_driver.driver.GlitterClient"></a>
+<a id="glitter_sdk.driver.GlitterClient"></a>
 
 ## GlitterClient Objects
 
@@ -45,7 +45,7 @@ class GlitterClient()
 
 A :class: `driver.GlitterClient` is python client  for glitter.
 
-<a id="glitter_driver.driver.GlitterClient.__init__"></a>
+<a id="glitter_sdk.driver.GlitterClient.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -62,7 +62,7 @@ Initialize a :class:`~driver.GlitterClient` driver instance.
 - `transport_class` - Optional transport class to use.
 - `timeout` _int_ - Optional timeout in seconds that will be passed to each request.
 
-<a id="glitter_driver.driver.GlitterClient.nodes"></a>
+<a id="glitter_sdk.driver.GlitterClient.nodes"></a>
 
 #### nodes
 
@@ -74,7 +74,7 @@ def nodes()
 :obj:`tuple` of :obj:`str`:
 URLs of connected nodes.
 
-<a id="glitter_driver.driver.GlitterClient.transport"></a>
+<a id="glitter_sdk.driver.GlitterClient.transport"></a>
 
 #### transport
 
@@ -86,7 +86,7 @@ def transport()
 :class:`~driver.Transport`:
 Object responsible for forwarding requests to a :class:`~driver.Connection` instance (node).
 
-<a id="glitter_driver.driver.GlitterClient.chain"></a>
+<a id="glitter_sdk.driver.GlitterClient.chain"></a>
 
 #### chain
 
@@ -98,7 +98,7 @@ def chain()
 :class:`~driver.Chain`:
 query block or transaction info.
 
-<a id="glitter_driver.driver.GlitterClient.admin"></a>
+<a id="glitter_sdk.driver.GlitterClient.admin"></a>
 
 #### admin
 
@@ -110,7 +110,7 @@ def admin()
 :class:`~driver.Admin`:
 Exposes functionalities of the ``'/admin'`` endpoint.
 
-<a id="glitter_driver.driver.GlitterClient.db"></a>
+<a id="glitter_sdk.driver.GlitterClient.db"></a>
 
 #### db
 
@@ -121,7 +121,7 @@ def db()
 
 :class:`~driver.DataBase` put or search doc from glitter.
 
-<a id="glitter_driver.driver.NamespacedDriver"></a>
+<a id="glitter_sdk.driver.NamespacedDriver"></a>
 
 ## NamespacedDriver Objects
 
@@ -132,7 +132,7 @@ class NamespacedDriver()
 Base class for creating endpoints (namespaced objects) that can be added
 under the :class:`~driver.GlitterClient` driver.
 
-<a id="glitter_driver.driver.NamespacedDriver.__init__"></a>
+<a id="glitter_sdk.driver.NamespacedDriver.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -149,7 +149,7 @@ driver instance.
 - `driver` _GlitterClient_ - Instance of
   :class:`~GlitterClient_driver.driver.GlitterClient`.
 
-<a id="glitter_driver.driver.DataBase"></a>
+<a id="glitter_sdk.driver.DataBase"></a>
 
 ## DataBase Objects
 
@@ -159,7 +159,7 @@ class DataBase(NamespacedDriver)
 
 Exposes the data of glitter db.
 
-<a id="glitter_driver.driver.DataBase.list_schema"></a>
+<a id="glitter_sdk.driver.DataBase.list_schema"></a>
 
 #### list\_schema
 
@@ -190,7 +190,7 @@ Examples:
         :param json: json object
 
 
-<a id="glitter_driver.driver.DataBase.put_doc"></a>
+<a id="glitter_sdk.driver.DataBase.put_doc"></a>
 
 #### put\_doc
 
@@ -238,7 +238,7 @@ Put document to glitter.
   }
   ```
 
-<a id="glitter_driver.driver.DataBase.get_docs"></a>
+<a id="glitter_sdk.driver.DataBase.get_docs"></a>
 
 #### get\_docs
 
@@ -279,7 +279,7 @@ Examples:
         :param json: json object
 
 
-<a id="glitter_driver.driver.DataBase.simple_search"></a>
+<a id="glitter_sdk.driver.DataBase.simple_search"></a>
 
 #### simple\_search
 
@@ -325,7 +325,7 @@ search from glitter
   }
   ```
 
-<a id="glitter_driver.driver.DataBase.complex_search"></a>
+<a id="glitter_sdk.driver.DataBase.complex_search"></a>
 
 #### complex\_search
 
@@ -374,7 +374,7 @@ search from glitter,with more args.
   }
   ```
 
-<a id="glitter_driver.driver.Chain"></a>
+<a id="glitter_sdk.driver.Chain"></a>
 
 ## Chain Objects
 
@@ -382,7 +382,7 @@ search from glitter,with more args.
 class Chain(NamespacedDriver)
 ```
 
-<a id="glitter_driver.driver.Chain.status"></a>
+<a id="glitter_sdk.driver.Chain.status"></a>
 
 #### status
 
@@ -395,7 +395,7 @@ Get Tendermint status including node info, pubkey, latest block hash, app hash, 
 Returns:
 
 
-<a id="glitter_driver.driver.Chain.tx_search"></a>
+<a id="glitter_sdk.driver.Chain.tx_search"></a>
 
 #### tx\_search
 
@@ -472,7 +472,7 @@ Examples:
     :param json: json object
 
 
-<a id="glitter_driver.driver.Chain.block_search"></a>
+<a id="glitter_sdk.driver.Chain.block_search"></a>
 
 #### block\_search
 
@@ -595,7 +595,7 @@ Examples:
         :param json: json object
 
 
-<a id="glitter_driver.driver.Chain.block"></a>
+<a id="glitter_sdk.driver.Chain.block"></a>
 
 #### block
 
@@ -614,7 +614,7 @@ Get block at a specified height
 
   :obj:`json`:height to return. If no height is provided, it will fetch the latest block.
 
-<a id="glitter_driver.driver.Chain.health"></a>
+<a id="glitter_sdk.driver.Chain.health"></a>
 
 #### health
 
@@ -628,7 +628,7 @@ Get node health.
 
   Details of the HTTP API provided by the tendermint server, empty result (200 OK) on success, no response - in case of an error.
 
-<a id="glitter_driver.driver.Chain.net_info"></a>
+<a id="glitter_sdk.driver.Chain.net_info"></a>
 
 #### net\_info
 
@@ -642,7 +642,7 @@ Get network info.
 
   Details of the HTTP API provided by the tendermint server.
 
-<a id="glitter_driver.driver.Chain.blockchain"></a>
+<a id="glitter_sdk.driver.Chain.blockchain"></a>
 
 #### blockchain
 
@@ -664,7 +664,7 @@ At most 20 items will be returned. Block headers are returned in descending orde
 
   Block headers, returned in descending order (highest first).
 
-<a id="glitter_driver.driver.Chain.header"></a>
+<a id="glitter_sdk.driver.Chain.header"></a>
 
 #### header
 
@@ -683,7 +683,7 @@ Retrieve the block header corresponding to a specified height.
 
   Header information.
 
-<a id="glitter_driver.driver.Chain.header_by_hash"></a>
+<a id="glitter_sdk.driver.Chain.header_by_hash"></a>
 
 #### header\_by\_hash
 
@@ -697,7 +697,7 @@ Retrieve the block header corresponding to a block hash.
 
 - `header_hash(str)` - header hash
 
-<a id="glitter_driver.driver.Chain.block_by_hash"></a>
+<a id="glitter_sdk.driver.Chain.block_by_hash"></a>
 
 #### block\_by\_hash
 
@@ -712,7 +712,7 @@ Get block by hash
 - `header_hash(str)` - block hash. example: "0xD70952032620CC4E2737EB8AC379806359D8E0B17B0488F627997A0B043ABDED"
   
 
-<a id="glitter_driver.driver.Admin"></a>
+<a id="glitter_sdk.driver.Admin"></a>
 
 ## Admin Objects
 
@@ -722,7 +722,7 @@ class Admin(NamespacedDriver)
 
 Exposes functionality of the ``'/admin'`` endpoint.
 
-<a id="glitter_driver.driver.Admin.update_validator"></a>
+<a id="glitter_sdk.driver.Admin.update_validator"></a>
 
 #### update\_validator
 
@@ -745,7 +745,7 @@ update validator set
   
   {"code":200,message:"","tx_hash":"","data":{}}
 
-<a id="glitter_driver.driver.Admin.validators"></a>
+<a id="glitter_sdk.driver.Admin.validators"></a>
 
 #### validators
 

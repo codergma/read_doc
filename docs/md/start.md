@@ -59,7 +59,7 @@ of the node or cluster you want to connect to.
 We begin by creating an object of class GlitterClient:
 
 ``` python
-    from glitter_driver import GlitterClient
+    from glitter_sdk import GlitterClient
     url = 'http://127.0.0.1:26659'  # Use YOUR Glitter Root URL here
 ```
 If the Glitter node or cluster doesn't require authentication tokens, you can do:
