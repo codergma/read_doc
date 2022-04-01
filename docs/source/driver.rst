@@ -1,7 +1,7 @@
-glitter_driver package
+glitter_sdk package
 ==================================
 
-.. automodule:: glitter_driver
+.. automodule:: glitter_sdk
 
 ``driver``
 ----------
@@ -11,7 +11,7 @@ glitter_driver package
 
     .. automethod:: __init__
 
-.. automodule:: glitter_driver.driver
+.. automodule:: glitter_sdk.driver
 
 .. autoclass:: DataBase
     :members:
