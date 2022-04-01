@@ -17,14 +17,14 @@ import sphinx_rtd_theme
 cwd = os.getcwd()
 project_root = os.path.dirname(cwd)
 sys.path.insert(0, project_root)
-sys.path.insert(0, os.path.dirname('../../glitter_sdk'))
-print(project_root)
+# sys.path.insert(0, os.path.dirname('../../glitter_sdk'))
+# print(project_root)
 
 import glitter_sdk
 
 # -- Project information -----------------------------------------------------
 
-project = 'glitter-sdk-py'
+project = 'glitter_sdk'
 copyright = '2022, glitter'
 author = 'glitter'
 
