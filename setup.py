@@ -13,5 +13,4 @@ setup(
     packages=[],
     install_requires=['requests'],
     entry_points={},
-    packages=find_packages()
 )
