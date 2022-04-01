@@ -34,5 +34,5 @@ python:
       extra_requirements:
         - docs
     - method: setuptools
-      path: ./
+      path: docs/requirements.txt
   system_packages: true
