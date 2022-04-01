@@ -10,7 +10,7 @@ setup(
     author_email='ted@glitterprotocol.io',
     url='https://docs.glitterprotocol.io/',
     description=u'Glitter Protocol is a blockchain based database and index engine for developing and hosting web3 applications in decentralized storage networks.',
-    packages=['glitter_sdk'],
+    packages=[],
     install_requires=['requests'],
     entry_points={},
     packages=find_packages()
