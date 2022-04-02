@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from requests import Session
 from requests.exceptions import ConnectionError
 
-from glitter_sdk.exceptions import HTTP_EXCEPTIONS, TransportError
+from .exceptions import HTTP_EXCEPTIONS, TransportError,TimeoutError
 
 
 BACKOFF_DELAY = 0.5  # seconds

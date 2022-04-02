@@ -18,9 +18,13 @@ import sphinx_rtd_theme
 cwd = os.getcwd()
 project_root = os.path.dirname(cwd)
 sys.path.insert(0, project_root)
+# sys.path.insert(0, os.path.dirname('../../glitter_sdk'))
+# print(project_root)
+
+import glitter_sdk
 
 # -- Project information -----------------------------------------------------
-import glitter_sdk
+
 project = 'glitter_sdk'
 author = 'glitter'
 now = datetime.datetime.now()
@@ -68,21 +72,21 @@ latex_elements = {}
 latex_documents = [
     ('index', 'glitter_python_driver.tex',
      'Glitter Python Driver Documentation',
-     'ted', 'manual'),
+     'ted@glitterprotocol.io', 'manual'),
 ]
 
 # -- Options for manual page output ---------------------------------------
 man_pages = [
     ('index', 'glitter_python_driver',
      'Glitter Python Driver Documentation',
-     ['ted'], 1)
+     ['ted@glitterprotocol.io'], 1)
 ]
 
 # -- Options for Texinfo output -------------------------------------------
 texinfo_documents = [
     ('index', 'glitter_python_driver',
      'Glitter Python Driver Documentation',
-     'ted',
+     'ted@glitterprotocol.io',
      'glitter_python_driver',
      '',
      'Miscellaneous'),

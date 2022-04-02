@@ -6,9 +6,9 @@ from time import time
 
 from requests.exceptions import ConnectionError
 
-from glitter_sdk.connection import Connection
-from glitter_sdk.exceptions import TimeoutError
-from glitter_sdk.pool import Pool
+from .connection import Connection
+from .exceptions import TimeoutError
+from .pool import Pool
 
 
 NO_TIMEOUT_BACKOFF_CAP = 10  # seconds

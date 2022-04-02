@@ -8,4 +8,5 @@ from .driver import GlitterClient   # noqa
 
 __author__ = 'GlitterClient'
 __email__ = 'dev@GlitterClient.com'
-__version__ = '0.6.2'
+__version__ = '0.1'
+__release__ = '0.1.0'
