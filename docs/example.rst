@@ -5,7 +5,7 @@
 .. _basic-usage:
 
 ====================
-Basic Usage Examples
+Examples
 ====================
 
 For the examples on this page,

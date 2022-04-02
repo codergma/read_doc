@@ -97,7 +97,7 @@ class DataBase(NamespacedDriver):
     """Exposes the data of glitter db.
     """
 
-    def create_schema(self, schema_name, fields, schema_type='record'):
+    def create_schema(self, schema_name, fields, schema_type='sci_test'):
         """
         Args:
             - schema_name(str): the name of schema. (e.g.: ``'rss','sci','libgen','magnet'``).
