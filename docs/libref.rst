@@ -1,4 +1,4 @@
-glitter_sdk package
+Library Reference
 ==================================
 
 .. automodule:: glitter_sdk

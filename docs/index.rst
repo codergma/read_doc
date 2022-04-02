@@ -10,6 +10,10 @@ Welcome to glitter_sdk's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   install
+   example
+   libref
+
 
 
 Indices and tables

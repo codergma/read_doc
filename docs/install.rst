@@ -4,7 +4,7 @@
    Code is Apache-2.0 and docs are CC-BY-4.0
 
 =========================
-Quickstart / Installation
+ Installation
 =========================
 
 This tutorial walks you through how to set up `glitter-sdk-py`_ for local development.
