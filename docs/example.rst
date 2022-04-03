@@ -63,6 +63,7 @@ Create Schema
     ]
     res = glitter_client.db.create_schema(schema_name, fields)
     print(res)
+#
 
 if create schema success, the return like:
 
