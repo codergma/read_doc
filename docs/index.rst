@@ -8,13 +8,10 @@ Welcome to glitter_sdk's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    install
    example
    libref
-
-   :caption: Contents:
 
 
 
