@@ -64,6 +64,28 @@ Create Schema
     res = glitter_client.db.create_schema(schema_name, fields)
     print(res)
 
+if create schema success, the return like:
+
+.. code-block:: json
+
+    {
+        "code": 0,
+        "message": "ok",
+        "tx": "B88CEA8172F0B8BD7EAC3021C1B347786F74EDCD9110A7525C61237CD91FCE73",
+        "data": ""
+    }
+
+if the schema all ready exist, the return like:
+
+.. code-block:: json
+
+    {
+      "code": 500,
+      "message": "schema already exist: schema_name=rss",
+      "tx": ""
+    }
+
+
 List All Schema
 ------------------------
 
