@@ -1,7 +1,3 @@
-.. Copyright Glitter GmbH and Glitter contributors
-    SPDX-License-Identifier: (Apache-2.0 AND CC-BY-4.0)
-    Code is Apache-2.0 and docs are CC-BY-4.0
-
 .. _basic-usage:
 
 ====================
@@ -35,26 +31,46 @@ If it *does* require authentication tokens, you can do put them in a dict like s
     tokens = {'access_token': 'my_token'}
     glitter_client = GlitterClient(url, headers=tokens)
 
+Create Schema
+------------------------
 
+.. code-block:: python
+
+    schema_name="demo"
+    fields = [
+        {
+            "name": "doi",
+            "type": "string",
+            "primary": "true",
+            "index": {
+                "type": "keyword"
+            }
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "index": {
+                "type": "text"
+            }
+        },
+        {
+            "name": "ipfs_cid",
+            "type": "string",
+            "index": {
+                "index": "false"
+            }
+        }
+    ]
+    res = glitter_client.db.create_schema(schema_name, fields)
+    print(res)
 
 List All Schema
 ------------------------
 
 .. code-block:: python
 
-    In [0]: res = glitter_client.db.list_schema()
-    In [1]: print(res)
-       ...     {
-       ...        "code": 200,
-       ...        "message": "ok",
-       ...        "data": {
-       ...          "lib_gen": "{\"mappings\":{\"_source\":{\"includes\":[],\"excludes\":[]},\"properties\":{\"author\":{\"type\":\"text\",\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_max_word\"},\"issn\":{\"type\":\"keyword\"},\"language\":{\"type\":\"keyword\"},\"publisher\":{\"type\":\"text\"},\"series\":{\"type\":\"text\"},\"md5\":{\"type\":\"keyword\"},\"title\":{\"type\":\"text\",\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_max_word\"},\"tags\":{\"type\":\"keyword\"},\"ipfs_cid\":{\"type\":\"keyword\",\"index\":false}}}}",
-       ...          "magnet": "{\"mappings\":{\"_source\":{\"includes\":[],\"excludes\":[]},\"properties\":{\"doc_id\":{\"type\":\"keyword\"},\"status\":{\"type\":\"short\",\"index\":\"false\"},\"data_create_time\":{\"type\":\"long\",\"index\":\"false\"},\"update_time\":{\"type\":\"long\",\"index\":\"false\"},\"file_name\":{\"type\":\"text\",\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_max_word\"},\"creator\":{\"type\":\"keyword\"},\"category\":{\"type\":\"keyword\"},\"extension\":{\"type\":\"keyword\"},\"file_size\":{\"type\":\"long\",\"index\":\"false\"},\"current_count\":{\"type\":\"long\",\"index\":\"false\"},\"total_count\":{\"type\":\"long\",\"index\":\"false\"},\"cid\":{\"type\":\"keyword\"},\"pin_status\":{\"type\":\"text\",\"index\":\"false\"}}}}",
-       ...          "sci": "{\"mappings\":{\"_source\":{\"includes\":[],\"excludes\":[]},\"properties\":{\"author\":{\"type\":\"text\",\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_max_word\"},\"md5\":{\"type\":\"keyword\"},\"doi\":{\"type\":\"keyword\"},\"title\":{\"type\":\"text\",\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_max_word\"},\"ipfs_cid\":{\"type\":\"keyword\",\"index\":false},\"file_name\":{\"type\":\"keyword\",\"index\":false}}}}"
-       ...        }
-       ...      }
-
-
+    res = glitter_client.db.list_schema()
+    print(res)
 
 Put Document to Glitter
 --------------------------------
