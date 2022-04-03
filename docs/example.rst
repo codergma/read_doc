@@ -79,48 +79,24 @@ For example:
 
 .. code-block:: python
 
-    In [0]: libgen_doc = {
-        ...     "title": "Mechanical Modelling and Computational Issues in Civil Engineering",
-        ...     "series": ["Lecture Notes in Applied and Computational Mechanics 23"],,
-        ...     "author": ["Michel Fremond (editor)", " Franco Maceri (editor)"],
-        ...     "publisher": "Springer",
-        ...     "language": ["English"],
-        ...     "md5": "2fac9c0079cea4f63862d8c30e6e8b29",
-        ...     "tags":["Vibration, Dynamical Systems, Control","Civil Engineering","Mechanics","Numerical Analysis"],
-        ...     "issn": "1613-7736",
-        ...     "ipfs_cid": "bafykbzacedq5bhvqpbuyd4lkop7fpv7wutjzjvzzdkprfgkecbyucrb4sz6io",
-        ...     "extension": "pdf"
-        ...    }
-    In [1]: res = glitter_client.db.put_doc("sci", "2fac9c0079cea4f63862d8c30e6e8b29", sci_doc)
-    In [2]: print(res)
-    In [3]: {
-                 'code': 200,
-                 'message': 'ok',
-                 'tx_hash': 'DC6128F7801993319C91EFACA2A19F0AA73AF3769D0711DA876D10E6E0EF8979',
-                 'data': ''
-             }
+    demo_doc = {
+        "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
+        "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history",
+        "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf"
+    }
+    res = self.glitter_client.db.put_doc(self.schema_name, demo_doc)
 
 
 Check Whether the Document Exists
 -----------------------------------
-Query by document id.
+Query by primary id.
 
 .. code-block:: python
 
-    In [0]: doc_ids = ["2fac9c0079cea4f63862d8c30e6e8b29"]
-    In [1]: res = glitter_client.db.get_docs("libgen", doc_ids)
-    In [2]: print(res)
-    In [3]: {
-          'code': 200,
-          'message': 'ok',
-          'data': {
-              'Total': 1,
-               Hits': {'my_token_2fac9c0079cea4f63862d8c30e6e8b29': {
-                  'doc_id': '2fac9c0079cea4f63862d8c30e6e8b29', 'title': 'Mechanical Modelling and Computational Issues in Civil Engineering', 'series': [''], 'author': ['Michel Fremond (editor)'], 'publisher': 'Springer', 'language': ['English'], 'tags': ['Vibration, Dynamical Systems, Control','Civil Engineering','Mechanics','Numerical Analysis'], 'ipfs_cid': 'bafykbzacedq5bhvqpbuyd4lkop7fpv7wutjzjvzzdkprfgkecbyucrb4sz6io', 'extension': 'pdf'}
-                  }
-               }
-       }
-
+    schema_name = "demo"
+    primary_key = ["10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c"]
+    res = glitter_client.db.get_docs(schema_name, primary_key)
+    print(res)
 
 Simple Search without Filter Condition
 -------------------------------------------------
@@ -128,21 +104,9 @@ Search document by publisher
 
 .. code-block:: python
 
-    In [1]: res = glitter_client.db.simple_search("libgen", "Springer")
-    In [2]: print(res)
-    In [3]:
-     {
-        "code": 200,
-        "message": "ok",
-        "data": {
-            "search_time": 4,
-            "index": "libgen",
-            "meta": {"page":{"current_page":1,"total_pages":6,"total_results":5,"size":1,"sorted_by":""}},
-            "items": [{"highlight":{"publisher":["<span>Springer</span>"]},"data":{"doc_id":"1753c32af92fa2f8de5a62fbc3805d95","title":"Mechanical Modelling and Computational Issues in Civil Engineering","series":[""],"author":["Michel Fremond (editor)"],"publisher":"Springer","language":["Latin","English"],"md5":"1753c32af92fa2f8de5a62fbc3805d95","tags":["Vibration, Dynamical Systems, Control","Civil Engineering","Mechanics","Numerical Analysis"],"ipfs_cid":"bafykbzacedq5bhvqpbuyd4lkop7fpv7wutjzjvzzdkprfgkecbyucrb4sz6io","extension":"pdf"}}],
-            "sorted_by_field": [{"field":"extension","type":"term"},{"field":"author","type":"term"}],
-            "facet": {"issn":[],"language":[{"type":"term","field":"language","value":"English","from":0,"to":0,"doc_count":4},{"type":"term","field":"language","value":"Latin","from":0,"to":0,"doc_count":1}],"tags":[{"type":"term","field":"tags","value":"","from":0,"to":0,"doc_count":3},{"type":"term","field":"tags","value":"Mechanics","from":0,"to":0,"doc_count":2}]}
-        }
-     }
+    schema_name = "demo"
+    res = glitter_client.db.simple_search(schema_name, "British Steel Corporation")
+    print(res)
 
 
 Complex Search with Filter Condition
@@ -150,10 +114,10 @@ Complex Search with Filter Condition
 
 .. code-block:: python
 
-   In [0]: filter_cond = [{"type": "term", "field": "language", "value": "English", "from": 0.9, "to": 1, "doc_count": 100}]
-   In [1]: res = glitter_client.db.complex_search("libgen", "Springer", filter_cond)
-   In [2]: print(res)
-   In [3]:
+   filter_cond = [{"type": "term", "field": "language", "value": "English", "from": 0.9, "to": 1, "doc_count": 100}]
+   res = glitter_client.db.complex_search("libgen", "Springer", filter_cond)
+   print(res)
+
    {
        "code": 200,
        "message": "ok",

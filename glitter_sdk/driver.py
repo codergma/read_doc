@@ -164,12 +164,12 @@ class DataBase(NamespacedDriver):
             json=body,
         )
 
-    def get_docs(self, schema_name, doc_ids):
+    def get_docs(self, schema_name, primary_key):
         """Get documents from glitter by doc ids.
 
         Args:
             schema_name(str): the name of schema. (e.g.: ``'sci','libgen','magnet'``).
-            doc_id(list of str): main key of document,must be uniq.
+            primary_key(list of str): main key of document,must be uniq.
             header(:obj:`dic`): http header, must contain access_token key.
 
         Returns:
@@ -179,7 +179,7 @@ class DataBase(NamespacedDriver):
         return self.transport.forward_request(
             method='POST',
             path=self.api_prefix + path,
-            json={"schema_name": schema_name, "doc_ids": doc_ids},
+            json={"schema_name": schema_name, "doc_ids": primary_key},
         )
 
     def simple_search(self, index, query_word, order_by="", limit=10, page=1):

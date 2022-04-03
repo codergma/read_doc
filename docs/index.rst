@@ -14,6 +14,8 @@ Welcome to glitter_sdk's documentation!
    example
    libref
 
+   :caption: Contents:
+
 
 
 Indices and tables
