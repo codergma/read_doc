@@ -97,17 +97,17 @@ class DataBase(NamespacedDriver):
     """Exposes the data of glitter db.
     """
 
-    def create_schema(self, schema_name, fields, schema_type='sci_test'):
+    def create_schema(self, schema_name, fields):
         """
         Args:
-            - schema_name(str): the name of schema. (e.g.: ``'rss','sci','libgen','magnet'``).
-            - schema_type(str): schema type,default is 'record'.
+            - schema_name(str): the name of schema.
             - fields(:obj:`list` of :obj:`dic`): list of schema fields.
 
         Returns:
             - :obj:`dic`: list all schema.
         """
         path = '/create_schema'
+        schema_type = "record"
         body = {
             "schema_name": schema_name,
             "data": {
@@ -182,12 +182,12 @@ class DataBase(NamespacedDriver):
             json={"schema_name": schema_name, "doc_ids": doc_ids},
         )
 
-    def simple_search(self, index, query, order_by="", limit=10, page=1):
+    def simple_search(self, index, query_word, order_by="", limit=10, page=1):
         """ search from glitter
 
             Args:
             index(str): index name (e.g.: ``'libgen','sci','magnet'``).
-            query(str): query word
+            query_word(str): query word
             order_by(str): order by field (e.g.: ``'update_time'``).
             limit(int): limit
             page(int): page number,begin from 1
@@ -200,7 +200,7 @@ class DataBase(NamespacedDriver):
         return self.transport.forward_request(
             method='GET',
             path=self.api_prefix + path,
-            params={"index": index, "query": query, "order_by": order_by, "limit": limit, "page": page},
+            params={"index": index, "query": query_word, "order_by": order_by, "limit": limit, "page": page},
         )
 
     def complex_search(self, index, query, filters, order_by="", limit=10, page=1, header=None):
@@ -227,6 +227,7 @@ class DataBase(NamespacedDriver):
                   "page": page},
             headers=header,
         )
+
 
 class Chain(NamespacedDriver):
     PATH = '/chain/'

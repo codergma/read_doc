@@ -10,19 +10,17 @@ Examples
 
 For the examples on this page,
 we assume you're using a Python 3 version of IPython (or similar),
-you've :doc:`quickstart <quickstart>`,
-of the node or cluster you want to connect to.
-
+you've :doc:`installed the glitter sdk Python package <install>`.
 
 Getting Started
 ---------------
 
 We begin by creating an object of class GlitterClient:
 
-.. code-block:: python
+.. ipython::
 
-    from glitter_sdk import GlitterClient
-    url = 'http://127.0.0.1:26659'  # Use YOUR Glitter Root URL here
+    In [0]: from glitter import GlitterClient
+    In [0]: url = 'http://127.0.0.1:26659'  # Use YOUR Glitter Root URL here
 
 If the Glitter node or cluster doesn't require authentication tokens, you can do:
 
