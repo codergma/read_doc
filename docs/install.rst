@@ -17,19 +17,19 @@ We recommend using pip_ to install glitter_sdk on all platforms:
 
 .. code-block:: bash
 
-    $ python3 -m pip install glitter
+    $ python3 -m pip install glitter_sdk
 
 To get a specific version of glitter:
 
 .. code-block:: bash
 
-    $ python3 -m pip install glitter==0.0.1
+    $ python3 -m pip install glitter_sdk==0.0.1
 
 To upgrade using pip:
 
 .. code-block:: bash
 
-    $ python3 -m pip install --upgrade glitter
+    $ python3 -m pip install --upgrade glitter_sdk
 
 Dependencies
 ---------------------
@@ -48,11 +48,11 @@ If you’d rather install directly from the source (i.e. to stay on the bleeding
 
 .. code-block:: bash
 
-    $ git clone https://github.com/blockved/glitter-sdk-py glitter
+    $ git clone https://github.com/glitternetwork/glitter-sdk-py glitter
     $ cd glitter/
     $ python3 setup.py install
 
 
-.. _glitter driver: https://github.com/blockved/glitter-sdk-py
-.. _Python Package Index: https://pypi.org/project/glitter/
+.. _glitter driver: https://github.com/glitternetwork/glitter-sdk-py
+.. _Python Package Index: https://pypi.org/project/glitter_sdk/
 .. _pip: https://pypi.org/project/pip/

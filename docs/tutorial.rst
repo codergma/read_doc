@@ -2,6 +2,7 @@
  Tutorial
 =========================
 This tutorial is intended as an introduction to working with glitter_ and glitter-sdk_.
+For an introduction on using these utilities, see the :ref:`examples`.
 
 
 Getting Started

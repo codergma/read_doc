@@ -1,4 +1,4 @@
-.. _basic-usage:
+.. _examples:
 
 ====================
 Examples
