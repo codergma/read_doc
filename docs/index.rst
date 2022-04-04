@@ -10,6 +10,7 @@ Welcome to glitter_sdk's documentation!
    :maxdepth: 2
 
    install
+   tutorial
    example
    libref
 

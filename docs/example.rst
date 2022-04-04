@@ -8,28 +8,6 @@ For the examples on this page,
 we assume you're using a Python 3 version of IPython (or similar),
 you've :doc:`installed the glitter sdk Python package <install>`.
 
-Getting Started
----------------
-
-We begin by creating an object of class GlitterClient:
-
-.. code-block:: python
-
-    from glitter import GlitterClient
-    url = 'http://127.0.0.1:26659'  # Use YOUR Glitter Root URL here
-
-If the Glitter node or cluster doesn't require authentication tokens, you can do:
-
-.. code-block:: python
-
-    glitter_client = GlitterClient(url)
-
-If it *does* require authentication tokens, you can do put them in a dict like so:
-
-.. code-block:: python
-
-    tokens = {'access_token': 'my_token'}
-    glitter_client = GlitterClient(url, headers=tokens)
 
 Create Schema
 ------------------------

@@ -135,6 +135,21 @@ class DataBase(NamespacedDriver):
             path=self.api_prefix + path,
         )
 
+    def show_schema(self, schema_name):
+        """
+
+        Args:
+            - schema_name(str): the name of schema.
+        Returns:
+            - :obj:`dic`: list all schema.
+        """
+        path = '/show_schema'
+
+        return self.transport.forward_request(
+            method='GET',
+            path=self.api_prefix + path,
+        )
+
     def app_status(self):
         path = '/app_status'
 
