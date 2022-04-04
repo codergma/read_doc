@@ -266,7 +266,7 @@ class Chain(NamespacedDriver):
         """ Search for transactions their results
 
         Args:
-            query(str): query words. (e.g: ``tx.height=1000, tx.hash='xxx', update_doc.token='eliubin'``)
+            query(str): query words. (e.g: ``tx.height=1000, tx.hash='xxx', update_doc.token='test_token'``)
             page(int): page number
             per_page(int): number of entries per page (max: 100)
             order_by(str): Order in which transactions are sorted ("asc" or "desc"), by height & index. If empty, default sorting will be still applied.
@@ -287,7 +287,7 @@ class Chain(NamespacedDriver):
             params={'query': query, 'page': page, 'per_page': per_page, 'order_by': order_by, 'prove': prove},
         )
 
-    def block_search(self, query, page=1, per_page=30, order_by="\"desc\""):
+    def block_search(self, query, page=1, per_page=30, order_by="desc"):
         """Search for blocks by BeginBlock and EndBlock events
 
         Args:
@@ -301,6 +301,7 @@ class Chain(NamespacedDriver):
         """
         path = "/chain/block_search"
         query = "\"" + query + "\""
+        order_by = '"{}"'.format(order_by)
 
         return self.transport.forward_request(
             method='GET',

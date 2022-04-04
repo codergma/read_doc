@@ -122,5 +122,5 @@ Now, you can search.
     }
 
 
-.. _glitter:
-.. _glitter-sdk:
+.. _glitter: http://sg6.testnet.glitter.link:8000/
+.. _glitter-sdk: https://github.com/glitternetwork/glitter-sdk-py

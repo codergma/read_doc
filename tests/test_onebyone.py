@@ -99,6 +99,13 @@ class GlitterClientUnitTest(unittest.TestCase):
         self.assertEqual(res['code'], 0)
         print(res)
 
+    def test_block(self):
+        res = self.glitter_client.chain.block()
+        print(res)
+
+    def test_block(self):
+        res = self.glitter_client.chain.block_search(query="block.height = 17835")
+        print(res)
 
 if __name__ == '__main__':
     unittest.main()

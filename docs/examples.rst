@@ -58,11 +58,12 @@ if the schema all ready exist, the return like:
 
     {
       "code": 500,
-      "message": "schema already exist: schema_name=rss",
+      "message": "schema already exist: schema_name=demo",
       "tx": ""
     }
 
 Check Schema
+------------------------
 
 get schema by name.
 
@@ -149,7 +150,7 @@ if put_doc success, the return like:
     }
 
 
-if fails, the return like:
+if fails, the return may be like:
 
 .. code-block:: json
 
@@ -162,13 +163,13 @@ if fails, the return like:
 
 Check Whether the Document Exists
 -----------------------------------
-Query by primary id.
+Query by primary key of document,for example:doi.
 
 .. code-block:: python
 
     schema_name = "demo"
-    primary_key = ["10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c"]
-    res = glitter_client.db.get_docs(schema_name, primary_key)
+    doi = "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c"
+    res = glitter_client.db.get_docs(schema_name, [doi])
     print(res)
 
 return the document:
@@ -272,39 +273,28 @@ App Status
         "message": "ok",
         "tx": "",
         "data": {
-            "fields": [{
-                "index": {
-                    "type": "keyword"
+            "size": 0,
+            "height": 0,
+            "app_hash": None,
+            "schema_state": {
+                "demo": {
+                    "count": 3,
+                    "last_update_time": "2022-04-04T08:00:27.617071816Z"
                 },
-                "name": "doi",
-                "primary": "true",
-                "type": "string"
-            }, {
-                "index": {
-                    "type": "text"
-                },
-                "name": "title",
-                "type": "string"
-            }, {
-                "index": {
-                    "index": "false"
-                },
-                "name": "ipfs_cid",
-                "type": "string"
-            }],
-            "name": "demo",
-            "type": "record"
+                "rss": {
+                    "count": 12385,
+                    "last_update_time": "2022-04-04T12:04:52.704777642Z"
+                }
+            }
         }
     }
 
 Search Transaction
 ----------------------------
-You can search transaction by transaction height, transaction hash, or token.
+You can search transaction by transaction height, transaction hash.
 
 .. code-block:: python
 
-   # search by token.
-   res = glitter_client.chain.tx_search(query="update_doc.token='my_token'")
    # search by transaction hash.
    res = glitter_client.chain.tx_search(query="tx.hash='ACB6696C22B601D544FE05C8899090B4C1E98EF87636AA07EBCD63548786B561'")
    # search by transaction height.
@@ -363,106 +353,96 @@ You can search block by block_search  or fetch the latest block.
 
 .. code-block:: python
 
-   res = glitter_client.chain.block_search(query="block.height = 1000")
+   res = glitter_client.chain.block()
+   # or
+   res = glitter_client.chain.block_search(query="block.height = 17835")
    # the return like:
    {
-     "jsonrpc": "2.0",
-     "id": -1,
-     "result": {
-       "blocks": [
-         {
-           "block_id": {
-             "hash": "10AB4DBCC0E8BA06381A6580197AAB68EAACDEA64BBAB50FB36B00F99A8191CB",
-             "parts": {
-               "total": 1,
-               "hash": "1734A94A2C210C9EE19B1DB15D116666CF9B68FB1DCE69883E27DA935712D449"
-             }
-           },
-           "block": {
-             "header": {
-               "version": {
-                 "block": "11",
-                 "app": "1"
-               },
-               "chain_id": "chain-LNTnFa",
-               "height": "1000",
-               "time": "2022-02-19T12:44:25.390486401Z",
-               "last_block_id": {
-                 "hash": "DDEC58156107A30971C4A5BAF87C9CDD807597E686BEE1E344F477DD09C73DFB",
-                 "parts": {
-                   "total": 1,
-                   "hash": "6CCC27C8A8BCA4C0E47F38B88D6E3FC4DE714380A9ABED1B498F8DB3FF18DE15"
-                 }
-               },
-               "last_commit_hash": "601649850FBE9681EB9C1A2F294BA841321BD0E2D7826244B6540C435FFDABD7",
-               "data_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-               "validators_hash": "E49055092750BE7A2533BD17E226E80A5E030A105E068D063D9BF46E6AED504F",
-               "next_validators_hash": "E49055092750BE7A2533BD17E226E80A5E030A105E068D063D9BF46E6AED504F",
-               "consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
-               "app_hash": "",
-               "last_results_hash": "6E340B9CFFB37A989CA544E6BB780A2C78901D3FB33738768511A30617AFA01D",
-               "evidence_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-               "proposer_address": "E54A63CD67AA32386894EDE5839767F4CD6EC121"
-             },
-             "data": {
-               "txs": []
-             },
-             "evidence": {
-               "evidence": []
-             },
-             "last_commit": {
-               "height": "999",
-               "round": 0,
-               "block_id": {
-                 "hash": "DDEC58156107A30971C4A5BAF87C9CDD807597E686BEE1E344F477DD09C73DFB",
-                 "parts": {
-                   "total": 1,
-                   "hash": "6CCC27C8A8BCA4C0E47F38B88D6E3FC4DE714380A9ABED1B498F8DB3FF18DE15"
-                 }
-               },
-               "signatures": [
-                 {
-                   "block_id_flag": 2,
-                   "validator_address": "1F690E3E9C072133F3B897B358C0F2F127F16704",
-                   "timestamp": "2022-02-19T12:44:25.390486401Z",
-                   "signature": "2Zw73NO8ZDiujWHWg4mIKquf1q+aWlE1pMZp9xQ32QZNkG8++XnNin7gQRfmPIjeTnVGSvYtyxXArb2LDKnUAQ=="
-                 },
-                 {
-                   "block_id_flag": 2,
-                   "validator_address": "7CE3A03CBCDD77187D9AFD0C242ED0AB910B6ACD",
-                   "timestamp": "2022-02-19T12:44:25.391515882Z",
-                   "signature": "xauumFCrfeGClZnZuEEnGKu65L4gHj/S1wI+RZF74RaFB4QVz72GLdeEv5GJ1gkWH5GwCt9nnBSMsvaPAzOxCA=="
-                 },
-                 {
-                   "block_id_flag": 2,
-                   "validator_address": "88839061A231E8A1C8285B67EF8BCBE97C3D94BF",
-                   "timestamp": "2022-02-19T12:44:25.39137696Z",
-                   "signature": "UWmIjOSplfmUGbbbv9v0VXJIK+qypiMahC0YHCGgNjJm1rmJ43IXMD9jDttgjpn/qCkGcjCcmzVuEmxgG2YvCA=="
-                 },
-                 {
-                   "block_id_flag": 2,
-                   "validator_address": "8A380491EEC814F390C113E622258F5FA46B2765",
-                   "timestamp": "2022-02-19T12:44:25.390398641Z",
-                   "signature": "68WuIwIggTlpuJWzQBT8/76e9WvooeAyuRWvZ/raTHrQEiiXEA8KU2u7/H3EjKXSOWGtvXwY1vtsviSeBvfdDA=="
-                 },
-                 {
-                   "block_id_flag": 2,
-                   "validator_address": "E54A63CD67AA32386894EDE5839767F4CD6EC121",
-                   "timestamp": "2022-02-19T12:44:25.390518133Z",
-                   "signature": "E5M9LRCeONpiM+NRu/x6UuGelcE+EYN3MvfUYw6DRdAS33WEsUDGeZ6B3BYlw/ehd3ecclg/sCShVRk2xHoGDA=="
-                 }
-               ]
-             }
-           }
-         }
-       ],
-       "total_count": "1"
-     }
-   }
-
-.. code-block:: python
-
-   >>> res = glitter_client.chain.block()
+        "jsonrpc": "2.0",
+        "id": -1,
+        "result": {
+            "blocks": [{
+                "block_id": {
+                    "hash": "8E05ECB6E8D9A455C39786A841A494EF5F1A556DD69D7BFE8087D944C0D58E9F",
+                    "parts": {
+                        "total": 1,
+                        "hash": "441EC5490877F1CB88BDF9E98B8A8D0F94AA50F51408616ED0895D2F68144F4E"
+                    }
+                },
+                "block": {
+                    "header": {
+                        "version": {
+                            "block": "11",
+                            "app": "1"
+                        },
+                        "chain_id": "chain-86acvw",
+                        "height": "17835",
+                        "time": "2022-04-04T12:11:57.151540264Z",
+                        "last_block_id": {
+                            "hash": "A3DE887AC31ED3EC61E7F5546AD93A10C04FC5EF877C8482BC348BCA34F132E2",
+                            "parts": {
+                                "total": 1,
+                                "hash": "6AA71359A2436CC468DA33F51240E542B191C886D179B2A13CC289011A22BAD6"
+                            }
+                        },
+                        "last_commit_hash": "2CDE9E0FACFAC12823BE0AEE338126AFDEB9C104F6D7B0CA671D7073A034D5BE",
+                        "data_hash": "BE70FDA4F06352C81AD76F06FCDE79B453BD1442982D89C801EA8220A7749F06",
+                        "validators_hash": "BD3B1DAB2563D85FA57961054C2DB23BDDB08434DBA0DBB5523D357ABA062EDD",
+                        "next_validators_hash": "BD3B1DAB2563D85FA57961054C2DB23BDDB08434DBA0DBB5523D357ABA062EDD",
+                        "consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
+                        "app_hash": "",
+                        "last_results_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+                        "evidence_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+                        "proposer_address": "F6749E28383C329AAEF0B2974EC9F6A8F37155E8"
+                    },
+                    "data": {
+                        "txs": ["eyJ0eXBlIjoiZG9jIiwiY3JlYXRvciI6InRlc3RfYnJva3MiLCJib2R5Ijp7InNjaGVtYV9uYW1lIjoicnNzIiwiZG9jX2RhdGEiOnsiZmVlZF9saW5rIjoiaHR0cHM6Ly9jcnlwdG9uZXdtZWRpYS5wcmVzcyIsInRpdGxlIjoiSGVyZVx1MjAxOXMgV2hhdCBXaWxsIElnbml0ZSBhIEJpdGNvaW4gKEJUQykgRXJ1cHRpb24gdG8gJDU4LDAwMCwgQWNjb3JkaW5nIHRvIFRvcCBDcnlwdG8gU3RyYXRlZ2lzdCIsImRlc2NyaXB0aW9uIjoiQSBjbG9zZWx5IGZvbGxvd2VkIGNyeXB0byBhbmFseXN0IGFuZCB0cmFkZXIgaXMuLi5cdTAwM2NiciAvXHUwMDNlXG5cdTAwM2NiciAvXHUwMDNlXG5bWyBUaGlzIGlzIGEgY29udGVudCBzdW1tYXJ5IG9ubHkuIFZpc2l0IG15IHdlYnNpdGUgZm9yIGZ1bGwgbGlua3MsIG90aGVyIGNvbnRlbnQsIGFuZCBtb3JlISBdXSIsImxpbmsiOiJodHRwczovL2NyeXB0b25ld21lZGlhLnByZXNzL2hlcmVzLXdoYXQtd2lsbC1pZ25pdGUtYS1iaXRjb2luLWJ0Yy1lcnVwdGlvbi10by01ODAwMC1hY2NvcmRpbmctdG8tdG9wLWNyeXB0by1zdHJhdGVnaXN0LyIsInB1Ymxpc2hlZCI6Ik1vbiwgMDQgQXByIDIwMjIgMDQ6NTk6MzQgUERUIiwiYXV0aG9yIjoiQ3J5cHRvbWFuIiwibGFuZ3VhZ2UiOiJlbi1VUyIsInRhZ3MiOlsiQml0Y29pbiJdLCJjcmVhdGVfdGltZSI6MTY0OTA3NDMyNX19fQ=="]
+                    },
+                    "evidence": {
+                        "evidence": []
+                    },
+                    "last_commit": {
+                        "height": "17834",
+                        "round": 0,
+                        "block_id": {
+                            "hash": "A3DE887AC31ED3EC61E7F5546AD93A10C04FC5EF877C8482BC348BCA34F132E2",
+                            "parts": {
+                                "total": 1,
+                                "hash": "6AA71359A2436CC468DA33F51240E542B191C886D179B2A13CC289011A22BAD6"
+                            }
+                        },
+                        "signatures": [{
+                            "block_id_flag": 2,
+                            "validator_address": "1E844C853F55F77595ABE651DE6FEADE989A88D9",
+                            "timestamp": "2022-04-04T12:11:57.151532949Z",
+                            "signature": "LcK3sjGldE98sA7o1QwXICulsy6R6IUxxXjSSxdh/70Qijko51Uyg9drYQhGwTl8YTO0hFPKo4wSMsf/xVd9BQ=="
+                        }, {
+                            "block_id_flag": 2,
+                            "validator_address": "7638DD6EE1F076E3CD2C49B53042B5A9352918E7",
+                            "timestamp": "2022-04-04T12:11:57.153424982Z",
+                            "signature": "QqsXdm0X+fkxpfDfYWyDIBE/TsXiE+9GU8Cz/LWGPy5ySnaWzq/4DxtPIhsGfMZxQWlcs/+WVZSTo1tZXSp2AA=="
+                        }, {
+                            "block_id_flag": 2,
+                            "validator_address": "83B53DAE8F1FD30763A1AB20E7C4E7710A56CA30",
+                            "timestamp": "2022-04-04T12:11:57.15304431Z",
+                            "signature": "0irGoWsRgJuWWkwThrrYzDf3k8x1wlKBIz0TJhvrLGURBzHTZZMqQFxmjsJJc3rCV2zVD9XCRXW2hXo4La+eDg=="
+                        }, {
+                            "block_id_flag": 2,
+                            "validator_address": "ED4BAB4AFBBBBD3D843DEA30D37DEE023826503B",
+                            "timestamp": "2022-04-04T12:11:57.151540264Z",
+                            "signature": "9MSMVVGLFKIQiPlgJvuH4M0UIz2ggstSDnhfudtcgNfvxyn0A31fdxe6zpYH4H5iV05otTNJA9AD9zhhOCcrBQ=="
+                        }, {
+                            "block_id_flag": 2,
+                            "validator_address": "F6749E28383C329AAEF0B2974EC9F6A8F37155E8",
+                            "timestamp": "2022-04-04T12:11:57.153105208Z",
+                            "signature": "cZp4fRJd+NjQ7UOtbN9duIbAO+nbW8DZvL8g8ONmpxfBe3mN8Mbf4/SAd8qoK+GmMph/uUdvO39EhuEeOVtVAA=="
+                        }]
+                    }
+                }
+            }],
+            "total_count": "1"
+        }
+    }
 
 
 Fetch Validator Status
