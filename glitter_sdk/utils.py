@@ -11,7 +11,7 @@ Attributes:
 """
 from urllib.parse import urlparse, urlunparse
 
-DEFAULT_NODE = 'http://127.0.0.1:26659'
+DEFAULT_NODE = 'http://sg1.testnet.glitter.link:26659'
 
 
 class CreateOperation:

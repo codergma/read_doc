@@ -8,6 +8,25 @@ For the examples on this page,
 we assume you've :doc:`installed the glitter sdk Python package <install>`.
 
 
+Getting Started
+---------------
+
+We begin by creating an object of class GlitterClient:
+
+.. code-block:: python
+
+    from glitter-sdk import GlitterClient
+    url = 'http://127.0.0.1:26659'
+    glitter_client = GlitterClient(url)
+
+Or use the default root url
+
+.. code-block:: python
+
+    from glitter-sdk import GlitterClient
+    glitter_client = GlitterClient()
+
+
 Create Schema
 ------------------------
 
@@ -49,7 +68,6 @@ if create schema success, the return like:
         "code": 0,
         "message": "ok",
         "tx": "B88CEA8172F0B8BD7EAC3021C1B347786F74EDCD9110A7525C61237CD91FCE73",
-        "data": ""
     }
 
 if the schema all ready exist, the return like:
@@ -59,7 +77,6 @@ if the schema all ready exist, the return like:
     {
       "code": 500,
       "message": "schema already exist: schema_name=demo",
-      "tx": ""
     }
 
 Check Schema
@@ -78,7 +95,6 @@ if success:
     {
         "code": 0,
         "message": "ok",
-        "tx": "",
         "data": {
             "fields": [{
                 "index": {
@@ -112,7 +128,6 @@ otherwise:
     {
         "code": 505,
         "message": "SchemaNotExist",
-        "tx": ""
     }
 
 List All Schema
@@ -121,7 +136,37 @@ List All Schema
 .. code-block:: python
 
     res = glitter_client.db.list_schema()
-    print(res)
+    # return
+    {
+        "code": 0,
+        "message": "ok",
+        "data": {
+            "demo": {
+                "fields": [{
+                    "index": {
+                        "type": "keyword"
+                    },
+                    "name": "doi",
+                    "primary": "true",
+                    "type": "string"
+                }, {
+                    "index": {
+                        "type": "text"
+                    },
+                    "name": "title",
+                    "type": "string"
+                }, {
+                    "index": {
+                        "index": "false"
+                    },
+                    "name": "ipfs_cid",
+                    "type": "string"
+                }],
+                "name": "demo",
+                "type": "record"
+            },
+        }
+    }
 
 
 Put Document to Glitter
@@ -146,7 +191,6 @@ if put_doc success, the return like:
       "code": 0,
       "message": "ok",
       "tx": "49429CDC575C0ED6D021FE9BEE1D44578AC7EDAD61A25EBBF0DE72746E0064F8",
-      "data": ""
     }
 
 
@@ -157,7 +201,6 @@ if fails, the return may be like:
     {
       "code": 500,
       "message": "RPC error -32603 - Internal error: tx already exists in cache",
-      "tx": ""
     }
 
 
@@ -170,7 +213,6 @@ Query by primary key of document,for example:doi.
     schema_name = "demo"
     doi = "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c"
     res = glitter_client.db.get_docs(schema_name, [doi])
-    print(res)
 
 return the document:
 
@@ -201,7 +243,6 @@ Search document by publisher
 
     schema_name = "demo"
     res = glitter_client.db.simple_search(schema_name, "British Steel Corporation")
-    print(res)
 
 the hit result like:
 
@@ -210,7 +251,6 @@ the hit result like:
     {
         "code": 0,
         "message": "ok",
-        "tx": "",
         "data": {
             "search_time": 695,
             "index": "demo",
@@ -271,7 +311,6 @@ App Status
     {
         "code": 0,
         "message": "ok",
-        "tx": "",
         "data": {
             "size": 0,
             "height": 0,
@@ -517,12 +556,3 @@ If no height is provided, it will fetch validator set which corresponds to the l
    res = glitter_client.admin.validators(height=100000)
 
 
-Update Validator
-----------------------------
-Update validator pow.
-
-.. code-block:: python
-
-    pub_key = "xxx"
-    res = glitter_client.admin.update_validator(pub_key, 1)
-    print(res)

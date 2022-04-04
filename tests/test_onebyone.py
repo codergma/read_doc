@@ -20,7 +20,7 @@ from glitter_sdk import GlitterClient
 
 class GlitterClientUnitTest(unittest.TestCase):
     glitter_client: GlitterClient
-    schema_name = "demo"
+    schema_name = "demo5"
 
     @classmethod
     def setUpClass(cls):

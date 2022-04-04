@@ -13,7 +13,14 @@ We begin by creating an object of class GlitterClient:
 .. code-block:: python
 
     from glitter-sdk import GlitterClient
-    url = 'http://sg1.testnet.glitter.link:26659'  # Or Use YOUR Glitter Root URL here
+    glitter_client = GlitterClient()
+
+Or use your glitter root url
+
+.. code-block:: python
+
+    from glitter-sdk import GlitterClient
+    url = 'http://127.0.0.1:26659'  # Or Use YOUR Glitter Root URL here
     glitter_client = GlitterClient(url)
 
 

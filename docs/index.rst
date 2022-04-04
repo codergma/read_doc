@@ -6,7 +6,6 @@ Welcome to glitter_sdk's documentation!
 
    ← glitternetwork <https://github.com/glitternetwork/>
    install
-   tutorial
    examples
    libref
 
