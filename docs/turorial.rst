@@ -27,8 +27,10 @@ If it *does* require authentication tokens, you can do put them in a dict like s
     tokens = {'access_token': 'my_token'}
     glitter_client = GlitterClient(url, headers=tokens)
 
+
 Create Schema
 ------------------------
+Then create a schema for document.
 
 .. code-block:: python
 
@@ -83,6 +85,7 @@ if the schema all ready exist, the return like:
 
 Put Document to Glitter
 --------------------------------
+
 define a document and put it to glitter
 For example:
 
@@ -117,9 +120,10 @@ if fails, the return like:
       "tx": ""
     }
 
+
 Simple Search without Filter Condition
 -------------------------------------------------
-Search document by publisher
+Now, you can search.
 
 .. code-block:: python
 
