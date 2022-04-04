@@ -20,13 +20,12 @@ from glitter_sdk import GlitterClient
 
 class GlitterClientUnitTest(unittest.TestCase):
     glitter_client: GlitterClient
-    header = {"access_token": "test_broks"}
     schema_name = "demo"
 
     @classmethod
     def setUpClass(cls):
         url = 'http://sg1.testnet.glitter.link:26659'
-        cls.glitter_client = GlitterClient(url, headers=cls.header)
+        cls.glitter_client = GlitterClient(url)
 
     def test_create_schema(self):
         fields = [
@@ -57,6 +56,10 @@ class GlitterClientUnitTest(unittest.TestCase):
         # self.assertEqual(res['code'], 0)
         print(res)
 
+    def test_show_schema(self):
+        res = self.glitter_client.db.show_schema(self.schema_name)
+        print(res)
+
     def test_list_schema(self):
         res = self.glitter_client.db.list_schema()
         self.assertEqual(res['code'], 0)
@@ -85,9 +88,8 @@ class GlitterClientUnitTest(unittest.TestCase):
         # print(res)
 
     def test_simple_search(self):
-        schema_name = 'demo'
         query_field = ["doi", "title", "uri" ]
-        res = self.glitter_client.db.simple_search(schema_name, "British Steel Corporation", query_field)
+        res = self.glitter_client.db.simple_search(self.schema_name, "British Steel Corporation", query_field)
         print(res)
         # self.assertEqual(res["code"], 0)
         # self.assertGreaterEqual(res["data"]["meta"]["page"]["size"], 1)

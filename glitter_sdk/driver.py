@@ -148,6 +148,7 @@ class DataBase(NamespacedDriver):
         return self.transport.forward_request(
             method='GET',
             path=self.api_prefix + path,
+            params={"schema_name": schema_name}
         )
 
     def app_status(self):

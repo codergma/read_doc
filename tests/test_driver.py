@@ -24,12 +24,11 @@ from glitter_sdk import GlitterClient
 
 class GlitterClientUnitTest(unittest.TestCase):
     glitter_client: GlitterClient
-    header = {"access_token": "test_broks"}
 
     @classmethod
     def setUpClass(cls):
         url = 'http://sg1.testnet.glitter.link:26659'
-        cls.glitter_client = GlitterClient(url, headers=cls.header)
+        cls.glitter_client = GlitterClient(url)
 
     def test_database_operation(self):
         schema_name = "demo"

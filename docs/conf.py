@@ -64,12 +64,7 @@ htmlhelp_basename = 'glitter_python_driverdoc'
 
 latex_elements = {}
 
-# -- Options for LaTeX output ---------------------------------------------
-latex_documents = [
-    ('index', 'glitter_python_driver.tex',
-     'Glitter Python Driver Documentation',
-     'ted', 'manual'),
-]
+
 
 # -- Options for manual page output ---------------------------------------
 man_pages = [
@@ -78,18 +73,4 @@ man_pages = [
      ['ted'], 1)
 ]
 
-# -- Options for Texinfo output -------------------------------------------
-texinfo_documents = [
-    ('index', 'glitter_python_driver',
-     'Glitter Python Driver Documentation',
-     'ted',
-     'glitter_python_driver',
-     '',
-     'Miscellaneous'),
-]
 
-intersphinx_mapping = {
-    'python': ('https://docs.python.org/3', None),
-    'Glitter-server': (
-        'https://docs.Glitter.com/projects/server/en/latest/', None),
-}
