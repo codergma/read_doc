@@ -312,9 +312,6 @@ App Status
         "code": 0,
         "message": "ok",
         "data": {
-            "size": 0,
-            "height": 0,
-            "app_hash": None,
             "schema_state": {
                 "demo": {
                     "count": 3,
