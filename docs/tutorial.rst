@@ -11,8 +11,8 @@ We begin by creating an object of class GlitterClient:
 
 .. code-block:: python
 
-    from glitter import GlitterClient
-    url = 'http://127.0.0.1:26659'  # Use YOUR Glitter Root URL here
+    from glitter-sdk import GlitterClient
+    url = 'http://sg1.testnet.glitter.link:26659'  # Or Use YOUR Glitter Root URL here
 
 If the Glitter node or cluster doesn't require authentication tokens, you can do:
 
@@ -30,7 +30,7 @@ If it *does* require authentication tokens, you can do put them in a dict like s
 
 Create Schema
 ------------------------
-Then create a schema for document.
+First, create a schema for documents.
 
 .. code-block:: python
 
@@ -72,7 +72,7 @@ Then create a schema for document.
 
 Put Document to Glitter
 --------------------------------
-define a document and put it to glitter
+Then, put a document  glitter by glitter-sdk.
 For example:
 
 .. code-block:: python

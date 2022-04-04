@@ -5,8 +5,7 @@ Examples
 ====================
 
 For the examples on this page,
-we assume you're using a Python 3 version of IPython (or similar),
-you've :doc:`installed the glitter sdk Python package <install>`.
+we assume you've :doc:`installed the glitter sdk Python package <install>`.
 
 
 Create Schema
@@ -63,10 +62,60 @@ if the schema all ready exist, the return like:
       "tx": ""
     }
 
+Check Schema
+
+get schema by name.
+
+.. code-block:: python
+
+    res = self.glitter_client.db.show_schema("demo")
+
+if success:
+
+.. code-block:: json
+
+    {
+        "code": 0,
+        "message": "ok",
+        "tx": "",
+        "data": {
+            "fields": [{
+                "index": {
+                    "type": "keyword"
+                },
+                "name": "doi",
+                "primary": "true",
+                "type": "string"
+            }, {
+                "index": {
+                    "type": "text"
+                },
+                "name": "title",
+                "type": "string"
+            }, {
+                "index": {
+                    "index": "false"
+                },
+                "name": "ipfs_cid",
+                "type": "string"
+            }],
+            "name": "demo",
+            "type": "record"
+        }
+    }
+
+otherwise:
+
+.. code-block:: json
+
+    {
+        "code": 505,
+        "message": "SchemaNotExist",
+        "tx": ""
+    }
 
 List All Schema
 ------------------------
-You can find all schema in glitter by list_schema()
 
 .. code-block:: python
 
@@ -220,10 +269,13 @@ You can search transaction by transaction height, transaction hash, or token.
 
 .. code-block:: python
 
-   #res = glitter_client.chain.tx_search(query="update_doc.token='my_token'")
-   #res = glitter_client.chain.tx_search(query="tx.hash='ACB6696C22B601D544FE05C8899090B4C1E98EF87636AA07EBCD63548786B561'")
+   # search by token.
+   res = glitter_client.chain.tx_search(query="update_doc.token='my_token'")
+   # search by transaction hash.
+   res = glitter_client.chain.tx_search(query="tx.hash='ACB6696C22B601D544FE05C8899090B4C1E98EF87636AA07EBCD63548786B561'")
+   # search by transaction height.
    res = glitter_client.chain.tx_search(query="tx.height=460844")
-   print(res)
+   # the return like:
    {
      "jsonrpc": "2.0",
      "id": -1,
@@ -273,12 +325,12 @@ You can search transaction by transaction height, transaction hash, or token.
 
 Search Block
 --------------
-You can search block by block_search , or fetch the latest block.
+You can search block by block_search  or fetch the latest block.
 
 .. code-block:: python
 
    res = glitter_client.chain.block_search(query="block.height = 1000")
-   print(res)
+   # the return like:
    {
      "jsonrpc": "2.0",
      "id": -1,
@@ -386,6 +438,7 @@ Get validator set at a specified height
 .. code-block:: python
 
    res = glitter_client.admin.validators()
+   # the return like:
    {
      "jsonrpc": "2.0",
      "id": -1,
