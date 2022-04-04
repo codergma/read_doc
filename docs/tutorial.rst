@@ -60,12 +60,7 @@ Then create a schema for document.
         }
     ]
     res = glitter_client.db.create_schema(schema_name, fields)
-    print(res)
-
-if create schema success, the return like:
-
-.. code-block:: json
-
+    # result like this
     {
         "code": 0,
         "message": "ok",
@@ -73,19 +68,10 @@ if create schema success, the return like:
         "data": ""
     }
 
-if the schema all ready exist, the return like:
 
-.. code-block:: json
-
-    {
-      "code": 500,
-      "message": "schema already exist: schema_name=rss",
-      "tx": ""
-    }
 
 Put Document to Glitter
 --------------------------------
-
 define a document and put it to glitter
 For example:
 
@@ -97,11 +83,7 @@ For example:
         "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf"
     }
     res = self.glitter_client.db.put_doc(self.schema_name, demo_doc)
-
-if put_doc success, the return like:
-
-.. code-block:: json
-
+    # return like this, the tx is transaction id.
     {
       "code": 0,
       "message": "ok",
@@ -110,18 +92,7 @@ if put_doc success, the return like:
     }
 
 
-if fails, the return like:
-
-.. code-block:: json
-
-    {
-      "code": 5,
-      "message": "RPC error -32603 - Internal error: tx already exists in cache",
-      "tx": ""
-    }
-
-
-Simple Search without Filter Condition
+Simple Search
 -------------------------------------------------
 Now, you can search.
 
@@ -129,12 +100,7 @@ Now, you can search.
 
     schema_name = "demo"
     res = glitter_client.db.simple_search(schema_name, "British Steel Corporation")
-    print(res)
-
-the hit result like:
-
-.. code-block:: json
-
+    # the result like:
     {
         "code": 0,
         "message": "ok",
@@ -168,8 +134,5 @@ the hit result like:
     }
 
 
-
-
 .. _glitter:
 .. _glitter-sdk:
-.. _pip: https://pypi.org/project/pip/

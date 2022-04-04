@@ -6,7 +6,7 @@ Welcome to glitter_sdk's documentation!
 
    install
    tutorial
-   example
+   examples
    libref
 
 
