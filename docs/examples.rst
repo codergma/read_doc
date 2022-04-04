@@ -239,7 +239,7 @@ the hit result like:
     }
 
 
-Complex Search with Filter Condition
+Advanced Search with Filter Condition
 -------------------------------------------------
 
 .. code-block:: python
