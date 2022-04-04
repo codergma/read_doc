@@ -104,7 +104,7 @@ class DataBase(NamespacedDriver):
             - fields(:obj:`list` of :obj:`dic`): list of schema fields.
 
         Returns:
-            - :obj:`dic`: list all schema.
+            - :obj:`dic`: request result.
         """
         path = '/create_schema'
         schema_type = "record"
@@ -141,7 +141,7 @@ class DataBase(NamespacedDriver):
         Args:
             - schema_name(str): the name of schema.
         Returns:
-            - :obj:`dic`: list all schema.
+            - :obj:`dic`: result with document schema.
         """
         path = '/show_schema'
 
@@ -152,6 +152,12 @@ class DataBase(NamespacedDriver):
         )
 
     def app_status(self):
+        """
+
+        Returns:
+            - :obj:`dic`: result with document count.
+        """
+
         path = '/app_status'
 
         return self.transport.forward_request(
@@ -163,11 +169,11 @@ class DataBase(NamespacedDriver):
         """Put document to glitter.
 
         Args:
-            - schema_name(str): the name of schema. (e.g.: ``'sci','libgen','magnet'``).
-            - doc_value(:obj:`dic`):doc content.
+            - schema_name(str): the name of schema.
+            - doc_value(:obj:`dic`): doc content.
 
         Returns:
-            - :obj:`dic`: transaction id.
+            - :obj:`dic`: result with code,msg,tx.
         """
         path = '/put_doc'
         body = {
@@ -184,12 +190,11 @@ class DataBase(NamespacedDriver):
         """Get documents from glitter by doc ids.
 
         Args:
-            schema_name(str): the name of schema. (e.g.: ``'sci','libgen','magnet'``).
+            schema_name(str): the name of schema.
             primary_key(list of str): main key of document,must be uniq.
-            header(:obj:`dic`): http header, must contain access_token key.
 
         Returns:
-            :obj:`dic`:
+            :obj:`dic`: result with the document struct.
         """
         path = '/get_docs'
         return self.transport.forward_request(
@@ -201,8 +206,8 @@ class DataBase(NamespacedDriver):
     def simple_search(self, index, query_word, query_field, order_by="", limit=10, page=1):
         """ search from glitter
 
-            Args:
-            index(str): index name (e.g.: ``'libgen','sci','magnet'``).
+        Args:
+            index(str): index name.
             query_word(str): query word
             query_field(:obj: `list` of str): query field ,which is define in schema
             order_by(str): order by field (e.g.: ``'update_time'``).
@@ -225,7 +230,7 @@ class DataBase(NamespacedDriver):
         """ search from glitter,with more args.
 
         Args:
-            index(str): index name (e.g.: ``'libgen','sci','magnet'``).
+            index(str): index name.
             query(str): query word
             filters(:obj:`list` of :obj:`dic`): filter condition, examples:[{"type":"term","field":"language","value":"english","from":0.5,"to":1,"doc_count":100}] this affect score only.
             order_by(str): order field
@@ -254,7 +259,7 @@ class Chain(NamespacedDriver):
         """ Get Tendermint status including node info, pubkey, latest block hash, app hash, block height, current max peer height, and time.
 
         Returns:
-        :obj:`json`:Details of the HTTP API provided by the tendermint server.
+            :obj:`json`:Details of the HTTP API provided by the tendermint server.
         """
         path = "/chain/status"
         return self.transport.forward_request(
@@ -262,7 +267,7 @@ class Chain(NamespacedDriver):
             path=self.api_prefix + path,
         )
 
-    def tx_search(self, query, page=1, per_page=30, order_by="\"desc\"", prove=True):
+    def tx_search(self, query, page=1, per_page=30, order_by="desc", prove=True):
         """ Search for transactions their results
 
         Args:
@@ -271,14 +276,14 @@ class Chain(NamespacedDriver):
             per_page(int): number of entries per page (max: 100)
             order_by(str): Order in which transactions are sorted ("asc" or "desc"), by height & index. If empty, default sorting will be still applied.
             prove(bool): Include proofs of the transactions inclusion in the block
-            headers(:obj:`dic`): http header
 
         Returns:
             :obj"`json`: transaction info
         """
 
         path = "/chain/tx_search"
-        query = "\"" + query + "\""
+        query = '"{}"'.format(query)
+        order_by = '"{}"'.format(order_by)
         prove = "true" if prove else "false"
 
         return self.transport.forward_request(
@@ -300,7 +305,7 @@ class Chain(NamespacedDriver):
 
         """
         path = "/chain/block_search"
-        query = "\"" + query + "\""
+        query = '"{}"'.format(query)
         order_by = '"{}"'.format(order_by)
 
         return self.transport.forward_request(
