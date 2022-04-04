@@ -210,8 +210,8 @@ class DataBase(NamespacedDriver):
             query_word(str): query word
             query_field(:obj: `list` of str): query field ,which is define in schema
             order_by(str): order by field (e.g.: ``'update_time'``).
-            limit(int): limit
-            page(int): page number,begin from 1
+            limit(int): limit. Defaults to ``10``
+            page(int): page number, begin from 1. Defaults to ``1``
 
             Returns:
             :obj:`dic`: the documents match query words.
@@ -271,10 +271,10 @@ class Chain(NamespacedDriver):
 
         Args:
             query(str): query words. (e.g: ``tx.height=1000, tx.hash='xxx', update_doc.token='test_token'``)
-            page(int): page number
-            per_page(int): number of entries per page (max: 100)
-            order_by(str): Order in which transactions are sorted ("asc" or "desc"), by height & index. If empty, default sorting will be still applied.
-            prove(bool): Include proofs of the transactions inclusion in the block
+            page(int): page number. Defaults to ``1``.
+            per_page(int): number of entries per page (max: ``100``).Defaults to ``30``.
+            order_by(str): Order in which transactions are sorted (``asc`` or ``desc``), by height & index. If empty, default sorting will be still applied.
+            prove(bool): Include proofs of the transactions inclusion in the block. Defaults to ``True``.
 
         Returns:
             :obj"`json`: transaction info
