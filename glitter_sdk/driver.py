@@ -6,7 +6,7 @@ from .transport import Transport
 from .utils import normalize_nodes
 
 class GlitterClient:
-    """A :class: `driver.GlitterClient` is python client  for glitter.
+    """A :class: `~driver.GlitterClient` is python client  for glitter. It can be connect, create schema, put docs and search .
 
     """
 
@@ -36,28 +36,25 @@ class GlitterClient:
 
     @property
     def transport(self):
-        """:class:`~driver.Transport`:
-         Object responsible for forwarding requests to a :class:`~driver.Connection` instance (node).
+        """:class:`~driver.Transport`: Object responsible for forwarding requests to a :class:`~driver.Connection` instance (node).
         """
         return self._transport
 
     @property
     def chain(self):
-        """:class:`~driver.Chain`:
-        query block or transaction info.
+        """:class:`~driver.Chain`: query block or transaction info.
         """
         return self._chain
 
     @property
     def admin(self):
-        """:class:`~driver.Admin`:
-        Exposes functionalities of the ``'/admin'`` endpoint.
+        """:class:`~driver.Admin`: Exposes functionalities of the ``'/admin'`` endpoint.
         """
         return self._admin
 
     @property
     def db(self):
-        """:class:`~driver.DataBase` put or search doc from glitter.
+        """:class:`~driver.DataBase`: put or search doc from glitter.
         """
         return self._db
 
@@ -99,9 +96,10 @@ class DataBase(NamespacedDriver):
 
     def create_schema(self, schema_name, fields):
         """
+
         Args:
-            - schema_name(str): the name of schema.
-            - fields(:obj:`list` of :obj:`dic`): list of schema fields.
+            - schema_name (str): the name of schema.
+            - fields (:obj:`list` of :obj:`dic`): list of schema fields.
 
         Returns:
             - :obj:`dic`: request result.
@@ -125,6 +123,7 @@ class DataBase(NamespacedDriver):
 
     def list_schema(self):
         """
+
         Returns:
             - :obj:`dic`: list all schema.
         """
