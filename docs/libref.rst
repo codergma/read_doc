@@ -16,6 +16,6 @@ Library Reference
 .. autoclass:: DataBase
     :members:
 .. autoclass:: Chain
-    :members: status,tx_search,block_search,block
+    :members:  tx_search,block_search,block,status
 .. autoclass:: Admin
     :members:

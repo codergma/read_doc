@@ -154,7 +154,7 @@ if fails, the return like:
 .. code-block:: json
 
     {
-      "code": 5,
+      "code": 500,
       "message": "RPC error -32603 - Internal error: tx already exists in cache",
       "tx": ""
     }
@@ -182,7 +182,6 @@ return the document:
             "total": 1,
             "hits": {
                 "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c": {
-                    "_creator": "test_broks",
                     "_schema_name": "demo",
                     "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
                     "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf",
@@ -228,7 +227,6 @@ the hit result like:
                     "title": ["<span>British</span> <span>Steel</span> <span>Corporation</span>: probably the biggest turnaround story in UK industrial history"]
                 },
                 "data": {
-                    "_creator": "test_broks",
                     "_schema_name": "demo",
                     "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
                     "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf",
@@ -262,6 +260,42 @@ Complex Search with Filter Condition
        }
    }
 
+App Status
+----------------------------
+
+.. code-block:: python
+
+    res = self.glitter_client.db.app_status()
+    #
+    {
+        "code": 0,
+        "message": "ok",
+        "tx": "",
+        "data": {
+            "fields": [{
+                "index": {
+                    "type": "keyword"
+                },
+                "name": "doi",
+                "primary": "true",
+                "type": "string"
+            }, {
+                "index": {
+                    "type": "text"
+                },
+                "name": "title",
+                "type": "string"
+            }, {
+                "index": {
+                    "index": "false"
+                },
+                "name": "ipfs_cid",
+                "type": "string"
+            }],
+            "name": "demo",
+            "type": "record"
+        }
+    }
 
 Search Transaction
 ----------------------------
