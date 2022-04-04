@@ -63,7 +63,6 @@ Create Schema
     ]
     res = glitter_client.db.create_schema(schema_name, fields)
     print(res)
-#
 
 if create schema success, the return like:
 
@@ -95,6 +94,7 @@ List All Schema
     res = glitter_client.db.list_schema()
     print(res)
 
+
 Put Document to Glitter
 --------------------------------
 define a document and put it to glitter
@@ -108,6 +108,20 @@ For example:
         "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf"
     }
     res = self.glitter_client.db.put_doc(self.schema_name, demo_doc)
+
+    # if put_doc success, the return like:
+    {
+      "code": 0,
+      "message": "ok",
+      "tx": "49429CDC575C0ED6D021FE9BEE1D44578AC7EDAD61A25EBBF0DE72746E0064F8",
+      "data": ""
+    }
+    # if put_doc fails, the return like:
+    {
+      "code": 5,
+      "message": "internal error: failed to broadcast tx, err=RPC error -32603 - Internal error: tx already exists in cache",
+      "tx": ""
+    }
 
 
 Check Whether the Document Exists
