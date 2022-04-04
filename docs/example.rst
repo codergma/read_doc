@@ -88,6 +88,7 @@ if the schema all ready exist, the return like:
 
 List All Schema
 ------------------------
+You can find all schema in glitter by list_schema()
 
 .. code-block:: python
 
@@ -109,17 +110,25 @@ For example:
     }
     res = self.glitter_client.db.put_doc(self.schema_name, demo_doc)
 
-    # if put_doc success, the return like:
+if put_doc success, the return like:
+
+.. code-block:: json
+
     {
       "code": 0,
       "message": "ok",
       "tx": "49429CDC575C0ED6D021FE9BEE1D44578AC7EDAD61A25EBBF0DE72746E0064F8",
       "data": ""
     }
-    # if put_doc fails, the return like:
+
+
+if fails, the return like:
+
+.. code-block:: json
+
     {
       "code": 5,
-      "message": "internal error: failed to broadcast tx, err=RPC error -32603 - Internal error: tx already exists in cache",
+      "message": "RPC error -32603 - Internal error: tx already exists in cache",
       "tx": ""
     }
 
@@ -135,6 +144,28 @@ Query by primary id.
     res = glitter_client.db.get_docs(schema_name, primary_key)
     print(res)
 
+return the document:
+
+.. code-block:: json
+
+    {
+        "code": 0,
+        "message": "ok",
+        "data": {
+            "total": 1,
+            "hits": {
+                "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c": {
+                    "_creator": "test_broks",
+                    "_schema_name": "demo",
+                    "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
+                    "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf",
+                    "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history"
+                }
+            }
+        }
+    }
+
+
 Simple Search without Filter Condition
 -------------------------------------------------
 Search document by publisher
@@ -144,6 +175,42 @@ Search document by publisher
     schema_name = "demo"
     res = glitter_client.db.simple_search(schema_name, "British Steel Corporation")
     print(res)
+
+the hit result like:
+
+.. code-block:: json
+
+    {
+        "code": 0,
+        "message": "ok",
+        "tx": "",
+        "data": {
+            "search_time": 695,
+            "index": "demo",
+            "meta": {
+                "page": {
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "total_results": 1,
+                    "size": 10,
+                    "sorted_by": ""
+                }
+            },
+            "items": [{
+                "highlight": {
+                    "title": ["<span>British</span> <span>Steel</span> <span>Corporation</span>: probably the biggest turnaround story in UK industrial history"]
+                },
+                "data": {
+                    "_creator": "test_broks",
+                    "_schema_name": "demo",
+                    "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
+                    "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf",
+                    "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history"
+                }
+            }],
+            "facet": {}
+        }
+    }
 
 
 Complex Search with Filter Condition

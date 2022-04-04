@@ -182,12 +182,13 @@ class DataBase(NamespacedDriver):
             json={"schema_name": schema_name, "doc_ids": primary_key},
         )
 
-    def simple_search(self, index, query_word, order_by="", limit=10, page=1):
+    def simple_search(self, index, query_word, query_field, order_by="", limit=10, page=1):
         """ search from glitter
 
             Args:
             index(str): index name (e.g.: ``'libgen','sci','magnet'``).
             query_word(str): query word
+            query_field(:obj: `list` of str): query field ,which is define in schema
             order_by(str): order by field (e.g.: ``'update_time'``).
             limit(int): limit
             page(int): page number,begin from 1
@@ -200,7 +201,8 @@ class DataBase(NamespacedDriver):
         return self.transport.forward_request(
             method='GET',
             path=self.api_prefix + path,
-            params={"index": index, "query": query_word, "order_by": order_by, "limit": limit, "page": page},
+            params={"index": index, "query": query_word, "query_field": query_field, "order_by": order_by,
+                    "limit": limit, "page": page},
         )
 
     def complex_search(self, index, query, filters, order_by="", limit=10, page=1, header=None):
