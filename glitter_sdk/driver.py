@@ -207,8 +207,8 @@ class DataBase(NamespacedDriver):
 
         Args:
             index(str): index name.
-            query_word(str): query word
-            query_field(:obj: `list` of str): query field ,which is define in schema
+            query_word(str): query word, only applies to  query_field.
+            query_field(:obj: `list` of str): query field must be indexed in schema.
             order_by(str): order by field (e.g.: ``'update_time'``).
             limit(int): limit. Defaults to ``10``
             page(int): page number, begin from 1. Defaults to ``1``
@@ -225,17 +225,18 @@ class DataBase(NamespacedDriver):
                     "limit": limit, "page": page},
         )
 
-    def complex_search(self, index, query, filters, order_by="", limit=10, page=1, header=None):
+    def advanced_search(self, index, query_word, query_field, filters, aggs_field=[], order_by="", limit=10, page=1):
         """ search from glitter,with more args.
 
         Args:
             index(str): index name.
-            query(str): query word
-            filters(:obj:`list` of :obj:`dic`): filter condition, examples:[{"type":"term","field":"language","value":"english","from":0.5,"to":1,"doc_count":100}] this affect score only.
+            query_word(str): query word, only applies to  query_field.
+            query_field(:obj: `list` of str): query field must be indexed in schema.
+            filters(:obj:`list` of :obj:`dic`): filter condition.
+            aggs_field(:obj: `list` of str): aggregate field ,which is define in schema
             order_by(str): order field
             limit(int): limit
             page(int): page number,begin from 1
-            header(:obj:`dic`): http header
 
         Returns:
             :obj:`dic`: the documents match query words.
@@ -245,9 +246,8 @@ class DataBase(NamespacedDriver):
         return self.transport.forward_request(
             method='POST',
             path=self.api_prefix + path,
-            json={"index": index, "query": query, "filters": filters, "order_by": order_by, "limit": limit,
-                  "page": page},
-            headers=header,
+            json={"index": index, "query": query_word, "filters": filters, "query_field": query_field,
+                  "aggs_field": aggs_field, "order_by": order_by, "limit": limit, "page": page},
         )
 
 

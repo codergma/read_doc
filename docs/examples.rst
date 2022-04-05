@@ -237,12 +237,13 @@ return the document:
 
 Simple Search without Filter Condition
 -------------------------------------------------
-Search document by publisher
+The simple_search is the standard query for performing a full-text search, including options for fuzzy matching.
 
 .. code-block:: python
 
-    schema_name = "demo"
-    res = glitter_client.db.simple_search(schema_name, "British Steel Corporation")
+    query_word = "British Steel Corporation"
+    query_field = ["title"]
+    res = self.glitter_client.db.simple_search(self.schema_name, query_word, query_field)
 
 the hit result like:
 
@@ -281,25 +282,103 @@ the hit result like:
 
 Advanced Search with Filter Condition
 -------------------------------------------------
+Advanced search can add more filter conditions.
+
+We put two documents beforehand, also the schema is different.
+
+.. code-block:: json
+
+    {
+        "doi": "doi_1",
+        "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history",
+        "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
+        "publish_year": 1992
+    }
+    {
+        "doi": "doi_2",
+        "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history",
+        "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
+        "publish_year": 2022
+    }
+
+We can search documents which titles contain "British Steel Corporation" and published between 1990 and 2000 .
 
 .. code-block:: python
 
-   filter_cond = [{"type": "term", "field": "language", "value": "English", "from": 0.9, "to": 1, "doc_count": 100}]
-   res = glitter_client.db.complex_search("libgen", "Springer", filter_cond)
-   print(res)
-
+   query_field = ["title"]
+   range_conds = [{"type": "range", "field": "publish_year", "from": 1990, "to": 2000}]
+   res = self.glitter_client.db.advanced_search(self.schema_name, "British Steel Corporation", query_field, range_conds)
+   # return
    {
-       "code": 200,
-       "message": "ok",
-       "data": {
-           "search_time": 10,
-           "index": "libgen",
-           "meta": {"page":{"current_page":1,"total_pages":1,"total_results":5,"size":10,"sorted_by":""}},
-           "items": [{"highlight":{"publisher":["<span>Springer</span>"]},"data":{"doc_id":"1753c32af92fa2f8de5a62fbc3805d95","title":"Mechanical Modelling and Computational Issues in Civil Engineering","series":[""],"author":["Michel Fremond (editor)"],"publisher":"Springer","language":["Latin","English"],"md5":"1753c32af92fa2f8de5a62fbc3805d95","tags":["Vibration, Dynamical Systems, Control","Civil Engineering","Mechanics","Numerical Analysis"],"ipfs_cid":"bafykbzacedq5bhvqpbuyd4lkop7fpv7wutjzjvzzdkprfgkecbyucrb4sz6io","extension":"pdf"}}],
-           "sorted_by_field": [{"field":"extension","type":"term"},{"field":"author","type":"term"}],
-           "facet": {"issn":[],"language":[{"type":"term","field":"language","value":"English","from":0,"to":0,"doc_count":4},{"type":"term","field":"language","value":"Latin","from":0,"to":0,"doc_count":1}],"tags":[{"type":"term","field":"tags","value":"","from":0,"to":0,"doc_count":3},{"type":"term","field":"tags","value":"Mechanics","from":0,"to":0,"doc_count":2}]}
-       }
-   }
+        "code": 0,
+        "message": "ok",
+        "data": {
+            "search_time": 7,
+            "index": "demo",
+            "meta": {
+                "page": {
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "total_results": 1,
+                    "size": 10,
+                    "sorted_by": ""
+                }
+            },
+            "items": [{
+                "highlight": {
+                    "title": ["<span>British</span> <span>Steel</span> <span>Corporation</span>: probably the biggest turnaround story in UK industrial history"]
+                },
+                "data": {
+                    "_creator": "test_broks",
+                    "_schema_name": "demo",
+                    "doi": "doi_1",
+                    "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
+                    "publish_year": 1992,
+                    "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history"
+                }
+            } ],
+            "facet": {}
+        }
+    }
+
+Now, search documents which titles contain "British Steel Corporation" ans published at 1992.
+
+.. code-block:: python
+
+   term_conds = [{"type": "term", "field": "publish_year", "value": 1992}]
+   res = self.glitter_client.db.advanced_search(self.schema_name, "British Steel Corporation", query_field, term_conds)
+   # return
+   {
+        "code": 0,
+        "message": "ok",
+        "data": {
+            "search_time": 7,
+            "index": "demo",
+            "meta": {
+                "page": {
+                    "current_page": 1,
+                    "total_pages": 1,
+                    "total_results": 1,
+                    "size": 10,
+                    "sorted_by": ""
+                }
+            },
+            "items": [{
+                "highlight": {
+                    "title": ["<span>British</span> <span>Steel</span> <span>Corporation</span>: probably the biggest turnaround story in UK industrial history"]
+                },
+                "data": {
+                    "_creator": "test_broks",
+                    "_schema_name": "demo",
+                    "doi": "doi_1",
+                    "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
+                    "publish_year": 1992,
+                    "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history"
+                }
+            } ],
+            "facet": {}
+        }
+    }
 
 App Status
 ----------------------------

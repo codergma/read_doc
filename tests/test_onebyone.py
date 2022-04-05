@@ -20,11 +20,11 @@ from glitter_sdk import GlitterClient
 
 class GlitterClientUnitTest(unittest.TestCase):
     glitter_client: GlitterClient
-    schema_name = "demo5"
+    schema_name = "demo6"
 
     @classmethod
     def setUpClass(cls):
-        url = 'http://sg1.testnet.glitter.link:26659'
+        url = 'http://sg2.testnet.glitter.link:26659'
         cls.glitter_client = GlitterClient(url)
 
     def test_create_schema(self):
@@ -88,8 +88,37 @@ class GlitterClientUnitTest(unittest.TestCase):
         # print(res)
 
     def test_simple_search(self):
-        query_field = ["doi", "title", "uri" ]
-        res = self.glitter_client.db.simple_search(self.schema_name, "British Steel Corporation", query_field)
+        query_word = "British Steel Corporation"
+        query_field = ["doi", "title"]
+        res = self.glitter_client.db.simple_search(self.schema_name, query_word, query_field)
+        print(res)
+        # self.assertEqual(res["code"], 0)
+        # self.assertGreaterEqual(res["data"]["meta"]["page"]["size"], 1)
+
+    def test_advanced_search(self):
+        ''' First, put  documents:
+            {
+                "doi": "doi_1",
+                "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history",
+                "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
+                "publish_year": 1992
+            }
+            {
+                "doi": "doi_2",
+                "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history",
+                "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
+                "publish_year": 2022
+            }
+
+        '''
+        query_field = ["doi", "title"]
+
+        # range query, 1990 <= publish_year <= 2000
+        # range_conds = [{"type": "range", "field": "publish_year", "from": 1990, "to": 2000}]
+        # res = self.glitter_client.db.advanced_search(self.schema_name, "British Steel Corporation",query_field, range_conds )
+
+        term_conds = [{"type": "term", "field": "publish_year", "value": 1992}]
+        res = self.glitter_client.db.advanced_search(self.schema_name, "British Steel Corporation",query_field, term_conds)
         print(res)
         # self.assertEqual(res["code"], 0)
         # self.assertGreaterEqual(res["data"]["meta"]["page"]["size"], 1)
