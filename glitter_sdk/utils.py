@@ -12,6 +12,9 @@ Attributes:
 from urllib.parse import urlparse, urlunparse
 
 DEFAULT_NODE = 'http://sg1.testnet.glitter.link:26659'
+DEFAULT_NODES = ['http://sg1.testnet.glitter.link:26659', 'http://sg2.testnet.glitter.link:26659',
+                 'http://sg3.testnet.glitter.link:26659', 'http://sg4.testnet.glitter.link:26659',
+                 'http://sg5.testnet.glitter.link:26659']
 
 
 class CreateOperation:
@@ -90,7 +93,7 @@ def normalize_node(node, headers=None):
 def normalize_nodes(*nodes, headers=None):
     """Normalizes given dict or array of driver nodes"""
     if not nodes:
-        return (normalize_node(DEFAULT_NODE, headers),)
+        nodes = DEFAULT_NODES
 
     normalized_nodes = ()
     for node in nodes:
