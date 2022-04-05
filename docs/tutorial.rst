@@ -94,8 +94,9 @@ Now, you can search.
 
 .. code-block:: python
 
-    schema_name = "demo"
-    res = glitter_client.db.simple_search(schema_name, "British Steel Corporation")
+    query_word = "British Steel Corporation"
+    query_field = ["title"]
+    res = self.glitter_client.db.search(self.schema_name, query_word, query_field)
     # the result like:
     {
         "code": 0,
