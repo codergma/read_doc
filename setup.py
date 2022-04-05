@@ -35,7 +35,7 @@ docs_require = [
 ]
 setup(
     name='glitter_sdk_test',
-    version='0.0.6',
+    version='0.1.0',
     author='ted',
     author_email='ted@glitterprotocol.io',
     url='https://docs.glitterprotocol.io/',
