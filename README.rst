@@ -1,8 +1,8 @@
 =====================
 Glitter Python  SDK
 =====================
-:Info: See `the glitter site <https://glitter-sdk-test.readthedocs.io/en/latest/>`_ for more information. See `GitHub <https://github.com/blockved/glitter-sdk-py>`_ for the latest source.
-:Documentation: Available at `pyglitter.readthedocs.io <https://glitter-sdk-test.readthedocs.io/en/latest/>`_
+:Info: See `the glitter site`_  for more information. See `glitter-sdk-py`_ for the latest source.
+:Documentation: Available at `glitter-sdk.readthedocs.io`_
 :Author: ted
 
 
@@ -10,5 +10,6 @@ Glitter Python  SDK
 
 
 
-.. _Python Package Index: https://pypi.org/project/glitter_sdk/
-
+.. _glitter-sdk.readthedocs.io: https://glitter-sdk.readthedocs.io/en/latest
+.. _the glitter site: https://glitterprotocol.io
+.. _glitter-sdk-py: https://github.com/glitternetwork/glitter-sdk-py

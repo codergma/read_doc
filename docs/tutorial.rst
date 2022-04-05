@@ -1,7 +1,7 @@
 =========================
  Tutorial
 =========================
-This tutorial is intended as an introduction to working with glitter_ and glitter-sdk_.
+This tutorial is intended as an introduction to working with glitter_ and glitter-sdk-py_.
 For an introduction on using these utilities, see the :ref:`examples`.
 
 
@@ -129,5 +129,5 @@ Now, you can search.
     }
 
 
-.. _glitter: http://sg6.testnet.glitter.link:8000/
-.. _glitter-sdk: https://github.com/glitternetwork/glitter-sdk-py
+.. _glitter: https://glitterprotocol.io/
+.. _glitter-sdk-py: https://github.com/glitternetwork/glitter-sdk-py

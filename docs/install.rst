@@ -2,7 +2,7 @@
  Installation
 =========================
 glitter sdk is in the `Python Package Index`_.
-This tutorial walks you through how to set up `glitter driver`_ for local development.
+This tutorial walks you through how to set up glitter-sdk-py_ for local development.
 
 The glitter Python Driver depends on:
 
@@ -53,6 +53,6 @@ If you’d rather install directly from the source (i.e. to stay on the bleeding
     $ python3 setup.py install
 
 
-.. _glitter driver: https://github.com/glitternetwork/glitter-sdk-py
+.. _glitter-sdk-py: https://github.com/glitternetwork/glitter-sdk-py
 .. _Python Package Index: https://pypi.org/project/glitter_sdk/
 .. _pip: https://pypi.org/project/pip/

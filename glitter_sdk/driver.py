@@ -202,30 +202,7 @@ class DataBase(NamespacedDriver):
             json={"schema_name": schema_name, "doc_ids": primary_key},
         )
 
-    def simple_search(self, index, query_word, query_field, order_by="", limit=10, page=1):
-        """ search from glitter
-
-        Args:
-            index(str): index name.
-            query_word(str): query word, only applies to  query_field.
-            query_field(:obj: `list` of str): query field must be indexed in schema.
-            order_by(str): order by field (e.g.: ``'update_time'``).
-            limit(int): limit. Defaults to ``10``
-            page(int): page number, begin from 1. Defaults to ``1``
-
-            Returns:
-            :obj:`dic`: the documents match query words.
-            """
-
-        path = '/search'
-        return self.transport.forward_request(
-            method='GET',
-            path=self.api_prefix + path,
-            params={"index": index, "query": query_word, "query_field": query_field, "order_by": order_by,
-                    "limit": limit, "page": page},
-        )
-
-    def advanced_search(self, index, query_word, query_field, filters, aggs_field=[], order_by="", limit=10, page=1):
+    def search(self, index, query_word, query_field, filters=[], aggs_field=[], order_by="", limit=10, page=1):
         """ search from glitter,with more args.
 
         Args:
