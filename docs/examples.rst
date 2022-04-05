@@ -15,7 +15,7 @@ We begin by creating an object of class GlitterClient:
 
 .. code-block:: python
 
-    from glitter-sdk import GlitterClient
+    from glitter_sdk import GlitterClient
     url = 'http://127.0.0.1:26659'
     glitter_client = GlitterClient(url)
 
@@ -23,7 +23,7 @@ Or use the default root url
 
 .. code-block:: python
 
-    from glitter-sdk import GlitterClient
+    from glitter_sdk import GlitterClient
     glitter_client = GlitterClient()
 
 
