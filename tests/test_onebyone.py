@@ -87,15 +87,15 @@ class GlitterClientUnitTest(unittest.TestCase):
         # self.assertEqual(res["data"]["hits"][primary_key]["doc_id"], primary_key)
         # print(res)
 
-    def test_simple_search(self):
+    def test_search(self):
         query_word = "British Steel Corporation"
         query_field = ["doi", "title"]
-        res = self.glitter_client.db.simple_search(self.schema_name, query_word, query_field)
+        res = self.glitter_client.db.search(self.schema_name, query_word, query_field)
         print(res)
         # self.assertEqual(res["code"], 0)
         # self.assertGreaterEqual(res["data"]["meta"]["page"]["size"], 1)
 
-    def test_advanced_search(self):
+    def test_search(self):
         ''' First, put  documents:
             {
                 "doi": "doi_1",
@@ -115,10 +115,10 @@ class GlitterClientUnitTest(unittest.TestCase):
 
         # range query, 1990 <= publish_year <= 2000
         # range_conds = [{"type": "range", "field": "publish_year", "from": 1990, "to": 2000}]
-        # res = self.glitter_client.db.advanced_search(self.schema_name, "British Steel Corporation",query_field, range_conds )
+        # res = self.glitter_client.db.search(self.schema_name, "British Steel Corporation",query_field, range_conds )
 
         term_conds = [{"type": "term", "field": "publish_year", "value": 1992}]
-        res = self.glitter_client.db.advanced_search(self.schema_name, "British Steel Corporation",query_field, term_conds)
+        res = self.glitter_client.db.search(self.schema_name, "British Steel Corporation",query_field, term_conds)
         print(res)
         # self.assertEqual(res["code"], 0)
         # self.assertGreaterEqual(res["data"]["meta"]["page"]["size"], 1)
