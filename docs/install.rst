@@ -38,7 +38,7 @@ You can install all dependencies automatically with the following command:
 
 .. code-block:: bash
 
-    $ python3 -m pip install glitter[requests]
+    $ python3 -m pip install glitter_sdk[requests]
 
 
 Installing from source
@@ -48,8 +48,8 @@ If you’d rather install directly from the source (i.e. to stay on the bleeding
 
 .. code-block:: bash
 
-    $ git clone https://github.com/glitternetwork/glitter-sdk-py glitter
-    $ cd glitter/
+    $ git clone https://github.com/glitternetwork/glitter-sdk-py glitter-sdk-py
+    $ cd glitter-sdk-py/
     $ python3 setup.py install
 
 
