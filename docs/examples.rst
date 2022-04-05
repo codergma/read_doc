@@ -179,7 +179,7 @@ For example:
     demo_doc = {
         "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
         "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history",
-        "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf"
+        "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte"
     }
     res = self.glitter_client.db.put_doc(self.schema_name, demo_doc)
 
@@ -227,7 +227,7 @@ return the document:
                 "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c": {
                     "_schema_name": "demo",
                     "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
-                    "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf",
+                    "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
                     "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history"
                 }
             }
@@ -270,7 +270,7 @@ the hit result like:
                 "data": {
                     "_schema_name": "demo",
                     "doi": "10.1002/(sci)1099-1697(199803/04)7:2<65::aid-jsc357>3.0.c",
-                    "ipfs_cid": "https://ipfs.io/ipfs/bafybeicoccgasbfx3puk5fxfol6gnbsaj7ssqs5gmhggotpx52p4pb6oze/6dbc6bb3e4993915f5ca07ca854ac31c.pdf",
+                    "ipfs_cid": "bafybeibxvp6bawmr4u24vuza2vyretip4n7sfvivg7hdbyolxrvbodwlte",
                     "title": "British Steel Corporation: probably the biggest turnaround story in UK industrial history"
                 }
             }],
