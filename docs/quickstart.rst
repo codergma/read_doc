@@ -10,7 +10,7 @@ Simple introduction to giltter.
 ---------------
 connect glitternetwork use a client
 
-.. code-block:: python
+.. ipython::
 
      from glitter_sdk import GlitterClient
      client = GlitterClient()
@@ -19,7 +19,7 @@ connect glitternetwork use a client
 ------------------------
 In the example below we create a schema which is used to describe data model.
 
-.. code-block:: python
+.. ipython::
 
     # create schema with a url and title
     schema = [
