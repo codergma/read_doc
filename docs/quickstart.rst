@@ -9,6 +9,7 @@ Simple introduction to giltter python sdk.
 1.Connection
 ---------------
 connect glitternetwork use a client
+
 .. code-block:: python
 
      from glitter_sdk import GlitterClient
@@ -16,7 +17,9 @@ connect glitternetwork use a client
 
 2.Data model
 ------------------------
-In the example below we create a schema that is used to describe data model.
+In the example below we create a schema which is used to describe data model.
+After create success,check the detail of `tx info`_ .
+
 .. code-block:: python
 
     # create schema with a url and title
@@ -38,9 +41,7 @@ In the example below we create a schema that is used to describe data model.
         }
     ]
     res = client.db.create_schema("sample", schema)
-    # you can check the detail of tx by explore
-    # http://sg6.testnet.glitter.link:8000/txs?txID=D4D9F93B60770952A33BD3C7A8C0F70A72CB78F800AD1C100CA73EBCF2825BDC
-    # or get the schema you create use get_schema
+    #get the schema you create use get_schema
     client.db.get_schema("sample")
 
 
@@ -77,4 +78,4 @@ search rss data. same as  sci检索页面
     client.db.search("rss", "oppo", ['title', 'description'], filters=[], aggs_field=["tags"])
 
 
-
+_tx info: http://sg6.testnet.glitter.link:8000/txs?txID=D4D9F93B60770952A33BD3C7A8C0F70A72CB78F800AD1C100CA73EBCF2825BDC
