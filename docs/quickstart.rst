@@ -18,6 +18,7 @@ connect glitternetwork use a client
 2.Data model
 ------------------------
 In the example below we create a schema which is used to describe data model.
+
 .. tabs::
 
     .. tab:: Code
@@ -82,12 +83,25 @@ In the example below we create a schema which is used to describe data model.
 ------------------------
 After put success,check the detail of `tx info`_ .
 
-.. code-block:: python
+.. tabs::
+    .. tab:: Code
 
-    put_res = client.db.put_doc("sample", {
-            "url": "https://glitterprotocol.io/",
-            "title": "A Decentralized Content Indexing Network",
-        })
+        .. code-block:: python
+
+            put_res = client.db.put_doc("sample", {
+                    "url": "https://glitterprotocol.io/",
+                    "title": "A Decentralized Content Indexing Network",
+                })
+
+    .. tab:: Output
+
+        .. code-block:: python
+
+            {
+              "code": 0,
+              "message": "ok",
+              "tx": "8A62859FD12A9A4D678812D65CE280501595C0B947C150E7182B7F099B213B01"
+            }
 
 4.Search
 ------------------------
@@ -110,4 +124,4 @@ search rss data. same as  sci检索页面
 
 
 
-.. _tx info: http://sg6.testnet.glitter.link:8000/txs?txID=D4D9F93B60770952A33BD3C7A8C0F70A72CB78F800AD1C100CA73EBCF2825BDC
+.. _tx info: http://sg6.testnet.glitter.link:8000/txs?txID=8A62859FD12A9A4D678812D65CE280501595C0B947C150E7182B7F099B213B01
