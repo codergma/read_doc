@@ -4,7 +4,7 @@
 Quickstart
 ====================
 
-Simple introduction to giltter python sdk.
+Simple introduction to giltter.
 
 1.Connection
 ---------------
@@ -18,7 +18,6 @@ connect glitternetwork use a client
 2.Data model
 ------------------------
 In the example below we create a schema which is used to describe data model.
-After create success,check the detail of `tx info`_ .
 
 .. code-block:: python
 
@@ -48,6 +47,7 @@ After create success,check the detail of `tx info`_ .
 
 3.Put doc
 ------------------------
+After put success,check the detail of `tx info`_ .
 
 .. code-block:: python
 
@@ -61,8 +61,6 @@ After create success,check the detail of `tx info`_ .
 
 .. code-block:: python
 
-    # get doc by url witch is the primary key define in schema
-    docs = client.db.get_doc("sample", "https://glitterprotocol.io/")
     # search doc
     search_res = client.db.search("sample", "Content Indexing Network")
 
