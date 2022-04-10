@@ -10,51 +10,71 @@ Simple introduction to giltter.
 ---------------
 connect glitternetwork use a client
 
-.. tabs::
+.. code-block:: python
 
-    .. tab:: Apples
-
-        .. code-block:: python
-
-             from glitter_sdk import GlitterClient
-             client = GlitterClient()
-
-    .. tab:: test
-
-        .. code-block:: python
-
-             from glitter_sdk import GlitterClient
-             client = GlitterClient()
-
+     from glitter_sdk import GlitterClient
+     client = GlitterClient()
 
 2.Data model
 ------------------------
 In the example below we create a schema which is used to describe data model.
+.. tabs::
 
-.. code-block:: python
+    .. tab:: Code
 
-    # create schema with a url and title
-    schema = [
-        {
-            "name": "url",
-            "type": "string",
-            "primary": "true",
-            "index": {
-                "type": "keyword"
+        .. code-block:: python
+
+            # create schema with a url and title
+            schema = [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "primary": "true",
+                    "index": {
+                        "type": "keyword"
+                    }
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "index": {
+                        "type": "text"
+                    }
+                }
+            ]
+            res = client.db.create_schema("sample", schema)
+            #get the schema you create use get_schema
+            client.db.get_schema("sample")
+
+    .. tab:: Output
+
+            .. code-block:: python
+
+            {
+              "code": 0,
+              "message": "ok",
+              "data": {
+                "fields": [
+                  {
+                    "index": {
+                      "type": "keyword"
+                    },
+                    "name": "url",
+                    "primary": "true",
+                    "type": "string"
+                  },
+                  {
+                    "index": {
+                      "type": "text"
+                    },
+                    "name": "title",
+                    "type": "string"
+                  }
+                ],
+                "name": "sample",
+                "type": "record"
+              }
             }
-        },
-        {
-            "name": "title",
-            "type": "string",
-            "index": {
-                "type": "text"
-            }
-        }
-    ]
-    res = client.db.create_schema("sample", schema)
-    #get the schema you create use get_schema
-    client.db.get_schema("sample")
-
 
 
 3.Put doc
