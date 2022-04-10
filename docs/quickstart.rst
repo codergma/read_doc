@@ -46,9 +46,10 @@ In the example below we create a schema which is used to describe data model.
             #get the schema you create use get_schema
             client.db.get_schema("sample")
 
+
     .. tab:: Output
 
-            .. code-block:: python
+        .. code-block:: python
 
             {
               "code": 0,
