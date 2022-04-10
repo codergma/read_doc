@@ -10,16 +10,31 @@ Simple introduction to giltter.
 ---------------
 connect glitternetwork use a client
 
-.. ipython::
+.. code-block:: python
 
      from glitter_sdk import GlitterClient
      client = GlitterClient()
+
+=== "Command"
+
+    ```bash
+    ceramic create tile --content '{ "Foo": "Bar" }'
+    ```
+
+=== "Output"
+
+    ```bash
+    StreamID(kjzl6cwe1jw147ww5d8pswh1hjh686mut8v1br10dar8l9a3n1wf8z38l0bg8qa)
+    {
+        "Foo": "Bar"
+    }
+    ```
 
 2.Data model
 ------------------------
 In the example below we create a schema which is used to describe data model.
 
-.. ipython::
+.. code-block:: python
 
     # create schema with a url and title
     schema = [
