@@ -44,7 +44,7 @@ In the example below we create a schema which is used to describe data model.
                 }
             ]
             res = client.db.create_schema("sample", schema)
-            #get the schema you create use get_schema
+            # get the schema you create
             client.db.get_schema("sample")
 
 
@@ -105,7 +105,7 @@ After put success,check the detail of `tx info`_ .
 
 4.Search
 ------------------------
-
+perform a full-text search
 .. tabs::
     .. tab:: Code
 
@@ -118,36 +118,36 @@ After put success,check the detail of `tx info`_ .
 
         .. code-block:: python
 
-        {
-            "code": 0,
-            "message": "ok",
-            "tx": "",
-            "data": {
-                "search_time": 7,
-                "index": "sample",
-                "meta": {
-                    "page": {
-                        "current_page": 1,
-                        "total_pages": 1,
-                        "total_results": 1,
-                        "size": 10,
-                        "sorted_by": ""
-                    }
-                },
-                "items": [{
-                    "highlight": {
-                        "title": ["A Decentralized <span>Content</span> <span>Indexing</span> <span>Network</span>"]
+            {
+                "code": 0,
+                "message": "ok",
+                "tx": "",
+                "data": {
+                    "search_time": 7,
+                    "index": "sample",
+                    "meta": {
+                        "page": {
+                            "current_page": 1,
+                            "total_pages": 1,
+                            "total_results": 1,
+                            "size": 10,
+                            "sorted_by": ""
+                        }
                     },
-                    "data": {
-                        "_creator": "test_broks",
-                        "_schema_name": "sample",
-                        "title": "A Decentralized Content Indexing Network",
-                        "url": "https://glitterprotocol.io/"
-                    }
-                }],
-                "facet": {}
+                    "items": [{
+                        "highlight": {
+                            "title": ["A Decentralized <span>Content</span> <span>Indexing</span> <span>Network</span>"]
+                        },
+                        "data": {
+                            "_creator": "test_broks",
+                            "_schema_name": "sample",
+                            "title": "A Decentralized Content Indexing Network",
+                            "url": "https://glitterprotocol.io/"
+                        }
+                    }],
+                    "facet": {}
+                }
             }
-        }
 
 5.Another search example
 ------------------------
@@ -159,8 +159,10 @@ search rss data. same as the `search web page`_.
     client.db.search("rss", "oppo")
     # only search title
     client.db.search("rss", "oppo", ['title'])
-    # Aggregation by tags
+    # aggregation by tags
     client.db.search("rss", "oppo", ['title', 'description'], filters=[], aggs_field=["tags"])
+    # search interesting content by tags
+    client.db.search("rss", "Mobile", ['tags'])
 
 
 
