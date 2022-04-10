@@ -10,25 +10,22 @@ Simple introduction to giltter.
 ---------------
 connect glitternetwork use a client
 
-.. code-block:: python
+.. tabs::
 
-     from glitter_sdk import GlitterClient
-     client = GlitterClient()
+    .. tab:: Apples
 
-=== "Command"
+        .. code-block:: python
 
-    ```bash
-    ceramic create tile --content '{ "Foo": "Bar" }'
-    ```
+             from glitter_sdk import GlitterClient
+             client = GlitterClient()
 
-=== "Output"
+    .. tab:: test
 
-    ```bash
-    StreamID(kjzl6cwe1jw147ww5d8pswh1hjh686mut8v1br10dar8l9a3n1wf8z38l0bg8qa)
-    {
-        "Foo": "Bar"
-    }
-    ```
+        .. code-block:: python
+
+             from glitter_sdk import GlitterClient
+             client = GlitterClient()
+
 
 2.Data model
 ------------------------
@@ -91,4 +88,5 @@ search rss data. same as  sci检索页面
     client.db.search("rss", "oppo", ['title', 'description'], filters=[], aggs_field=["tags"])
 
 
-_tx info: http://sg6.testnet.glitter.link:8000/txs?txID=D4D9F93B60770952A33BD3C7A8C0F70A72CB78F800AD1C100CA73EBCF2825BDC
+
+.. _tx info: http://sg6.testnet.glitter.link:8000/txs?txID=D4D9F93B60770952A33BD3C7A8C0F70A72CB78F800AD1C100CA73EBCF2825BDC
