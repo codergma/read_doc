@@ -106,22 +106,63 @@ After put success,check the detail of `tx info`_ .
 4.Search
 ------------------------
 
-.. code-block:: python
+.. tabs::
+    .. tab:: Code
 
-    # search doc
-    search_res = client.db.search("sample", "Content Indexing Network")
+        .. code-block:: python
 
+            # search doc
+            search_res = client.db.search("sample", "Content Indexing Network")
+
+    .. tab:: Output
+
+        .. code-block:: python
+
+        {
+            "code": 0,
+            "message": "ok",
+            "tx": "",
+            "data": {
+                "search_time": 7,
+                "index": "sample",
+                "meta": {
+                    "page": {
+                        "current_page": 1,
+                        "total_pages": 1,
+                        "total_results": 1,
+                        "size": 10,
+                        "sorted_by": ""
+                    }
+                },
+                "items": [{
+                    "highlight": {
+                        "title": ["A Decentralized <span>Content</span> <span>Indexing</span> <span>Network</span>"]
+                    },
+                    "data": {
+                        "_creator": "test_broks",
+                        "_schema_name": "sample",
+                        "title": "A Decentralized Content Indexing Network",
+                        "url": "https://glitterprotocol.io/"
+                    }
+                }],
+                "facet": {}
+            }
+        }
 
 5.Another search example
 ------------------------
-search rss data. same as  sci检索页面
+search rss data. same as the `search web page`_.
 
 .. code-block:: python
 
+    # standard query for performing a full-text search
     client.db.search("rss", "oppo")
+    # only search title
     client.db.search("rss", "oppo", ['title'])
+    # Aggregation by tags
     client.db.search("rss", "oppo", ['title', 'description'], filters=[], aggs_field=["tags"])
 
 
 
 .. _tx info: http://sg6.testnet.glitter.link:8000/txs?txID=8A62859FD12A9A4D678812D65CE280501595C0B947C150E7182B7F099B213B01
+.. _search web page: http://sg6.testnet.glitter.link:8100/search?q=oppo&index=rss
