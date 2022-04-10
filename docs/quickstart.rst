@@ -106,6 +106,7 @@ After put success,check the detail of `tx info`_ .
 4.Search
 ------------------------
 perform a full-text search
+
 .. tabs::
     .. tab:: Code
 
